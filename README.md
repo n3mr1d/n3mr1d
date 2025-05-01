@@ -75,6 +75,8 @@ I'm a NOOB fullstack developer passionate about PHP and Rust. Currently focused 
   
 </div>
 <details>
+<summary><b>🔐 PGP Public Key</b> (Click to expand)</summary>
+```asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGgN2oMBEADYzKK6ei2Qc4M/QYmKwu/k7FVs1j6wnMwvrCHXer4o9lqzmzXU
@@ -128,7 +130,8 @@ dYAaSOuisbIaThct+giwOsxSV5486K8rW4vspkafBJXpqurb1eOxUYgGmw==
 =mHWx
 
 -----END PGP PUBLIC KEY BLOCK-----
-<summary><b>🔐 PGP Public Key</b> (Click to expand)</summary>
+ </details> ``` 
+
 
 ## Social Connect Link
 
