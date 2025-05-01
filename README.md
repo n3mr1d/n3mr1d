@@ -4,7 +4,7 @@
   
   ![GitHub Profile Views](https://komarev.com/ghpvc/?username=n3mr1d&color=blueviolet)
   [![GitHub followers](https://img.shields.io/github/followers/n3mr1d?style=social)](https://github.com/n3mr1d)
-  [![Twitter Follow](https://img.shields.io/twitter/follow/n3mr1d?style=social)](https://twitter.com/n3mr1d)
+  <!-- [![Twitter Follow](https://img.shields.io/twitter/follow/n3mr1d?style=social)](https://twitter.com/n3mr1d) -->
   
 </div>
 
@@ -12,24 +12,22 @@
 
 If you find my work valuable, consider supporting me through cryptocurrency donations:
 
-<div align="center">
-  
-  [![Bitcoin](https://img.shields.io/badge/Bitcoin-bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh-orange?style=flat-square&logo=bitcoin&logoColor=white)](bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh)
-  
-  [![Ethereum](https://img.shields.io/badge/Ethereum-0x71C7656EC7ab88b098defB751B7401B5f6d8976F-blue?style=flat-square&logo=ethereum&logoColor=white)](ethereum:0x71C7656EC7ab88b098defB751B7401B5f6d8976F)
-  
-  [![USDT](https://img.shields.io/badge/USDT-TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY-green?style=flat-square&logo=tether&logoColor=white)](tether:TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY)
-  
-  [![Dogecoin](https://img.shields.io/badge/DOGE-D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj-yellow?style=flat-square&logo=dogecoin&logoColor=white)](dogecoin:D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj)
-  
-</div>
+[![Bitcoin](https://img.shields.io/badge/Bitcoin-bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh-orange?style=flat-square&logo=bitcoin&logoColor=white)](bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh)
+
+[![Ethereum](https://img.shields.io/badge/Ethereum-0x71C7656EC7ab88b098defB751B7401B5f6d8976F-blue?style=flat-square&logo=ethereum&logoColor=white)](ethereum:0x71C7656EC7ab88b098defB751B7401B5f6d8976F)
+
+[![USDT](https://img.shields.io/badge/USDT-TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY-green?style=flat-square&logo=tether&logoColor=white)](tether:TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY)
+
+[![Dogecoin](https://img.shields.io/badge/DOGE-D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj-yellow?style=flat-square&logo=dogecoin&logoColor=white)](dogecoin:D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj)
 
 
 ## 💫 About Me
 
 > *"I exist where encryption is law and anonymity is power."* —n3mr1d
 
-I'm a cybersecurity enthusiast and developer focused on privacy-enhancing technologies and secure communications. My work spans across cryptography, network security, and decentralized systems.
+**role : NOOB**
+
+I'm a NOOB fullstack developer passionate about PHP and Rust. Currently focused on building small websites while continuously learning. I've dedicated myself to the world of computers, finding my strength in the digital realm where I can express myself freely. Though I consider myself a beginner, I'm committed to growing my skills in web development and programming.
 
 ## 🛠️ Tech Stack
 
@@ -60,13 +58,22 @@ I'm a cybersecurity enthusiast and developer focused on privacy-enhancing techno
 
 ## PlayList Spotify
 [![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=31xm7txea264o45vm66425ojitmq&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false)](https://github.com/kittinan/spotify-github-profile)
+## 🔐 Cryptographic Signature
 
-## Cryptographic Signature
-Fingerprint: 184D 1362 1014 8737 5EAA  AACD 330F 3DCD 0522 80C6
-Name : N3mR1d
-email : nameraid@protonmail.com
-https://keybase.io/n3mr1d
---Original N3mr1d  send me message with pgp--
+<div align="center">
+  
+  **PGP Key Information**
+  
+  | Detail | Value |
+  |--------|-------|
+  | **Fingerprint** | `184D 1362 1014 8737 5EAA AACD 330F 3DCD 0522 80C6` |
+  | **Name** | N3mR1d |
+  | **Email** | nameraid@protonmail.com |
+  | **Keybase** | [https://keybase.io/n3mr1d](https://keybase.io/n3mr1d) |
+  
+  *Original N3mr1d - Please encrypt messages with PGP*
+  
+</div>
 <details>
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -121,5 +128,6 @@ dYAaSOuisbIaThct+giwOsxSV5486K8rW4vspkafBJXpqurb1eOxUYgGmw==
 =mHWx
 -----END PGP PUBLIC KEY BLOCK-----
 </details>
+
 ## Social Connect Link
 
