@@ -60,7 +60,7 @@ I'm a NOOB fullstack developer passionate about PHP and Rust. Currently focused 
 [![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=31xm7txea264o45vm66425ojitmq&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false)](https://github.com/kittinan/spotify-github-profile)
 ## 🔐 Cryptographic Signature
 
-<div align="center">
+<div>
   
   **PGP Key Information**
   
@@ -75,6 +75,7 @@ I'm a NOOB fullstack developer passionate about PHP and Rust. Currently focused 
   
 </div>
 <details>
+`
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGgN2oMBEADYzKK6ei2Qc4M/QYmKwu/k7FVs1j6wnMwvrCHXer4o9lqzmzXU
@@ -124,9 +125,11 @@ eOEOEJxPRFKnQ9FJ+BycCGuqVAUjjfa9Iz45FmGpdUJbRVvjxyGOdHxgjNVVgEmO
 XASdOLR881MXpRL6UckTl0a5KB23afLXyt4kWj8VUV8AAoovoUo3P68y5dvHBJnh
 PiuD9cNm6y8o7tKMD8GzF4U+tzaZjpIXpGhKhrfxIqzF/U+jh5P72Cqx/rayipXE
 uGwll+taYwTPhy26HTphd5jkQVA6OMhid6PzURw3AuSOWsOcLRvtEseVKclpVPXG
-dYAaSOuisbIaThct+giwOsxSV5486K8rW4vspkafBJXpqurb1eOxUYgGmw==
-=mHWx
+dYAaSOuisbIaThct+giwOsxSV5486K8rW4vspkafBJXpqurb1eOxUYgGmw===mHWx
+
 -----END PGP PUBLIC KEY BLOCK-----
+`
+
 </details>
 
 ## Social Connect Link
