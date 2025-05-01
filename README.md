@@ -5,9 +5,25 @@
   ![GitHub Profile Views](https://komarev.com/ghpvc/?username=n3mr1d&color=blueviolet)
   [![GitHub followers](https://img.shields.io/github/followers/n3mr1d?style=social)](https://github.com/n3mr1d)
   [![Twitter Follow](https://img.shields.io/twitter/follow/n3mr1d?style=social)](https://twitter.com/n3mr1d)
-  [![Spotify](https://img.shields.io/badge/Spotify-1ED760?style=flat-square&logo=spotify&logoColor=white)](https://open.spotify.com/user/n3mr1d)
   
 </div>
+
+## 💰 Donations
+
+If you find my work valuable, consider supporting me through cryptocurrency donations:
+
+<div align="center">
+  
+  [![Bitcoin](https://img.shields.io/badge/Bitcoin-bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh-orange?style=flat-square&logo=bitcoin&logoColor=white)](bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh)
+  
+  [![Ethereum](https://img.shields.io/badge/Ethereum-0x71C7656EC7ab88b098defB751B7401B5f6d8976F-blue?style=flat-square&logo=ethereum&logoColor=white)](ethereum:0x71C7656EC7ab88b098defB751B7401B5f6d8976F)
+  
+  [![USDT](https://img.shields.io/badge/USDT-TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY-green?style=flat-square&logo=tether&logoColor=white)](tether:TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY)
+  
+  [![Dogecoin](https://img.shields.io/badge/DOGE-D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj-yellow?style=flat-square&logo=dogecoin&logoColor=white)](dogecoin:D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj)
+  
+</div>
+
 
 ## 💫 About Me
 
@@ -15,43 +31,17 @@
 
 I'm a cybersecurity enthusiast and developer focused on privacy-enhancing technologies and secure communications. My work spans across cryptography, network security, and decentralized systems.
 
-## 🎵 My Curated Playlists
-
-<div align="center">
-  <a href="https://open.spotify.com/playlist/37i9dQZF1DX5trt9i14X7j" target="_blank">
-    <img src="https://i.imgur.com/NmyMSt9.gif" alt="Coding Beats" width="250" />
-  </a>
-  <a href="https://open.spotify.com/playlist/37i9dQZF1DWWQRwui0ExPn" target="_blank">
-    <img src="https://i.imgur.com/8eGErkI.gif" alt="Dark Ambient" width="250" />
-  </a>
-</div>
-
-<details>
-  <summary>🔒 Spotify API Access (For Developers)</summary>
-  
-  ```json
-  {
-    "client_id": "42390d93e5794137b93f25d8229f28c9",
-    "status": "Development mode",
-    "client_secret": "54cb7e4bbae949848ce99a1f02eb235c",
-    "redirect_uri": "https://n3mr1d.github.io/callback",
-    "scopes": ["user-read-private", "user-read-email", "playlist-read-private"]
-  }
-  ```
-  
-  <sub>⚠️ Note: These credentials are for demonstration purposes only. In a real scenario, never expose your client secrets publicly.</sub>
-</details>
-
 ## 🛠️ Tech Stack
 
 <div align="center">
   
+  ![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
+  ![PHP](https://img.shields.io/badge/-PHP-AEB2D5?style=flat-square&logo=php&logoColor=white)
   ![Rust](https://img.shields.io/badge/-Rust-000000?style=flat-square&logo=rust&logoColor=white)
-  ![Go](https://img.shields.io/badge/-Go-00ADD8?style=flat-square&logo=go&logoColor=white)
-  ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
   ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
-  ![PHP](https://img.shields.io/badge/-PHP-AEB2D5?style=flat-square&logo=php)
-  ![Spotify API](https://img.shields.io/badge/-Spotify_API-1DB954?style=flat-square&logo=spotify&logoColor=white)
+  ![Laravel](https://img.shields.io/badge/-Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white)
+  ![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
   
 </div>
 
@@ -66,27 +56,18 @@ I'm a cybersecurity enthusiast and developer focused on privacy-enhancing techno
 
 - **PasteLink** - Link list directory
 - **UploadAnonym** - Upload Anonymous File/Image
-- **CryptoBeats** - Secure music streaming with end-to-end encryption
-- **SpotifyVault** - Privacy-focused Spotify playlist manager
 
-## 🎧 Now Playing
 
-<div align="center">
-  <a href="https://now-playing-profile.n3mr1d.vercel.app/now-playing">
-    <img src="https://now-playing-profile.n3mr1d.vercel.app/now-playing" width="356" height="64" alt="Now Playing">
-  </a>
-</div>
-
-## 🔐 Digital Fortress
-
-<div align="center">
-  <img src="https://i.imgur.com/JWLgvI5.gif" alt="Digital Fortress" width="500" />
-  <br>
-  <sub>My digital security architecture visualization</sub>
-</div>
+## PlayList Spotify
+[![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=31xm7txea264o45vm66425ojitmq&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false)](https://github.com/kittinan/spotify-github-profile)
 
 ## Cryptographic Signature
-
+Fingerprint: 184D 1362 1014 8737 5EAA  AACD 330F 3DCD 0522 80C6
+Name : N3mR1d
+email : nameraid@protonmail.com
+https://keybase.io/n3mr1d
+--Original N3mr1d  send me message with pgp--
+<details>
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGgN2oMBEADYzKK6ei2Qc4M/QYmKwu/k7FVs1j6wnMwvrCHXer4o9lqzmzXU
@@ -139,5 +120,6 @@ uGwll+taYwTPhy26HTphd5jkQVA6OMhid6PzURw3AuSOWsOcLRvtEseVKclpVPXG
 dYAaSOuisbIaThct+giwOsxSV5486K8rW4vspkafBJXpqurb1eOxUYgGmw==
 =mHWx
 -----END PGP PUBLIC KEY BLOCK-----
-
+</details>
 ## Social Connect Link
+
