@@ -10,15 +10,5 @@
         { "src": "/(.*)\\.js", "dest": "/public/resource/js/$1.js" },
         { "src": "/(.*)\\.png|jpg|jpeg|gif|svg|ico", "dest": "/public/resource/img/$1" },
         { "src": "/(.*)",  "dest": "/api/index.php" }
-    ],
-    "headers": [
-        {
-            "source": "/(.*)",
-            "headers": [
-                { "key": "X-Content-Type-Options", "value": "nosniff" },
-                { "key": "X-Frame-Options", "value": "DENY" },
-                { "key": "X-XSS-Protection", "value": "1; mode=block" }
-            ]
-        }
     ]
 }
