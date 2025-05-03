@@ -1,0 +1,151 @@
+/* Donate Page Styles */
+.container {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+
+width: 100%;
+}
+
+
+.donate-section {
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.tech-accent {
+    color: #00bcd4;
+}
+
+.tech-line {
+    height: 3px;
+    width: 100px;
+    background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+    margin: 0 auto;
+}
+
+.donate-content {
+    color: #e0e0e0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.donate-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.crypto-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.crypto-item {
+    background-color: transparent;
+    border-radius: 6px;
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+
+.crypto-item h3 {
+    color: #00bcd4;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #16a9ce;
+    padding-bottom: 0.5rem;
+}
+
+.crypto-address {
+    display: flex;
+    align-items: center;
+    background-color: #1e1e1e;
+    padding: 0.8rem;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.crypto-address code {
+    flex: 1;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.copy-btn {
+    background-color: #00bcd4;
+    color: #000;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+
+.thank-you {
+    text-align: center;
+    padding: 2rem;
+    background-color: #252525;
+    border-radius: 6px;
+}
+
+.thank-you h3 {
+    color: #00bcd4;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.thank-you p {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .crypto-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .crypto-address {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .crypto-address code {
+        margin-bottom: 0.5rem;
+        white-space: normal;
+        word-break: break-all;
+    }
+    
+    .copy-btn {
+        margin-left: 0;
+    }
+}

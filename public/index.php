@@ -3,48 +3,61 @@
 // difine global variable
 define("app_name", "Portfolio");
 define("email", "nemraid@protonmail.com");
+define("DBUSER", "sql12776625");
+define("DBPASS", "b8ie1pZpEB");
+define("DBHOST", "sql12.freesqldatabase.com");
+define("DBNAME", "sql12776625");
+define("DBPORT", "3306");
+try {
+    $sql = new PDO("mysql:host=" . DBHOST . ";port=" . DBPORT . ";dbname=" . DBNAME, DBUSER, DBPASS);
+    $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
      $featuredProjects = [
     [
-        'image' => '/resource/img/project1.jpg',
-        'alt' => 'AI Analytics Dashboard',
-        'title' => 'AI Analytics Dashboard',
-        'description' => 'A real-time analytics platform with AI-powered insights and predictive modeling.',
-        'technologies' => ['React', 'Node.js', 'TensorFlow'],
-        'view'=>'https://google.com',
-        'code'=>'https://github.com/n3mrid'
+        'image' => '/resource/img/coming-soon.jpg',
+        'alt' => 'Coming Soon',
+        'title' => 'Coming Soon',
+        'description' => 'Exciting new project under development. Stay tuned for updates!',
+        'technologies' => ['Coming Soon'],
+        'view'=>'#',
+        'code'=>'#'
     ],
     [
-        'image' => '/resource/img/project2.jpg',
-        'alt' => 'E-Commerce Platform',
-        'title' => 'E-Commerce Platform',
-        'description' => 'A scalable e-commerce solution with advanced inventory management and payment processing.',
-        'technologies' => ['PHP', 'MySQL', 'JavaScript'],
-        'view'=>'https://google.com',
-        'code'=>'https://github.com/n3mrid'
+        'image' => '/resource/img/coming-soon.jpg',
+        'alt' => 'Coming Soon',
+        'title' => 'Coming Soon',
+        'description' => 'New innovative project in the works. Check back later for more details.',
+        'technologies' => ['Coming Soon'],
+        'view'=>'#',
+        'code'=>'#'
     ],
     [
-        'image' => '/resource/img/project3.jpg',
-        'alt' => 'IoT Smart Home System',
-        'title' => 'IoT Smart Home System',
-        'description' => 'An integrated IoT solution for home automation with voice control and energy monitoring.',
-        'technologies' => ['Python', 'Raspberry Pi', 'MQTT'],
-        'view'=>'https://google.com',
-        'code'=>'https://github.com/n3mrid'
+        'image' => '/resource/img/coming-soon.jpg',
+        'alt' => 'Coming Soon',
+        'title' => 'Coming Soon',
+        'description' => 'Something amazing is being built. Details will be revealed soon.',
+        'technologies' => ['Coming Soon'],
+        'view'=>'#',
+        'code'=>'#'
     ]
 ];
 
 $skillCategories = [
 'Frontend Development' => [
     ['name' => 'HTML5/CSS3', 'icon' => 'bi-filetype-html', 'percentage' => 95],
-    ['name' => 'JavaScript', 'icon' => 'bi-filetype-js', 'percentage' => 90],
+    ['name' => 'JavaScript', 'icon' => 'bi-filetype-js', 'percentage' => 40],
 ],
 'Backend Development' => [
     ['name' => 'PHP', 'icon' => 'bi-filetype-php', 'percentage' => 92],
-    ['name' => 'MySQL/MongoDB', 'icon' => 'bi-database-fill', 'percentage' => 88],
-    ['name' => 'Rust', 'icon' => 'bi-gear-fill', 'percentage' => 90]
+    ['name' => 'MySQL/MongoDB', 'icon' => 'bi-database-fill', 'percentage' => 40],
+    ['name' => 'Rust', 'icon' => 'bi-gear-fill', 'percentage' => 90],
+    ['name' => 'Java', 'icon' => 'bi-filetype-java', 'percentage' => 40]
 ],
 'Other Technologies' => [
-    ['name' => 'Git/GitHub', 'icon' => 'bi-git', 'percentage' => 90],
+    ['name' => 'Git/GitHub', 'icon' => 'bi-git', 'percentage' => 50],
+    ['name' => 'Linux', 'icon' => 'bi-terminal', 'percentage' => 80],
    
 ]
 ];
@@ -79,7 +92,7 @@ function showhome(){
         <div class="hero-section">
             <div class="tech-overlay"></div>
             <div class="hero-content">
-                <h1 class="glitch-text">Welcome to My Portofolio </h1>
+                <h1 class="glitch-text">Welcome to My Space </h1>
                 <p class="typewriter">Full-Stack Developer </p>
             </div>
             <div class="tech-particles" id="particles-js"></div>
@@ -126,7 +139,7 @@ function showhome(){
                     echo '<div class="skill-item">
                         <div class="skill-icon"><i class="bi ' . $skill['icon'] . '"></i></div>
                         <div class="skill-info">
-                            <h4>' . $skill['name'] . '</h4>
+                            <h4>' . $skill['name'] . ' | ' . $skill['percentage'] . '%</h4>
                             <div class="progress-bar">
                                 <div class="progress" style="width: ' . $skill['percentage'] . '%"></div>
                             </div>

@@ -7,7 +7,7 @@ function navbar(){
     echo '
     <nav class="nav-container">
         <div class="kontainer-nav">
-            <div class="kontainer hire" id="hire"><a href="#" class="menu"><i class="bi bi-briefcase-fill"></i> Hire me</a></div>
+            <div class="kontainer hire" id="hire"><a href="https://www.freelancer.com/u/n3mr1d/" class="menu"><i class="bi bi-briefcase-fill"></i> Hire me</a></div>
             <div class="kontainer clock" id="time">
     ';
     echo '<i class="bi bi-clock-fill"></i><span class="clock"></span>';
@@ -26,14 +26,13 @@ function navbar(){
         'skill' => ['icon' => 'bi-code-slash', 'text' => 'Skill', 'link' => '#skills'],
         'about' => ['icon' => 'bi-person-fill', 'text' => 'About', 'link' => '#about'],
         'project' => ['icon' => 'bi-diagram-3-fill', 'text' => 'Project', 'link' => '#project'],
-        'donate' => ['icon' => 'bi-wallet2', 'text' => 'Donate', 'link' => '#contact']
+        'donate' => ['icon' => 'bi-wallet2', 'text' => 'Donate', 'link' => '/donate']
     ];
     
     // Loop through the array to generate menu items
     foreach ($menuItems as $key => $item) {
-        echo '<a class="menu ' . $key . '" href="' . $item['link'] . '"><i class="bi ' . $item['icon'] . '"></i> ' . $item['text'] . '</a>';
+        echo '<button class="menu ' . $key . '" onclick="window.location.href=\'' . $item['link'] . '\'"><i class="bi ' . $item['icon'] . '"></i> ' . $item['text'] . '</button>';
     }
-    
     echo '
             </div>
         </div>
