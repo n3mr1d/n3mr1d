@@ -5,6 +5,10 @@
         }
     },
     "routes": [
+        { "src": "/resource/(.*)", "dest": "/public/resource/$1" },
+        { "src": "/(.*)\\.css", "dest": "/public/resource/style/$1.css" },
+        { "src": "/(.*)\\.js", "dest": "/public/resource/js/$1.js" },
+        { "src": "/(.*)\\.png|jpg|jpeg|gif|svg|ico", "dest": "/public/resource/img/$1" },
         { "src": "/(.*)",  "dest": "/api/index.php" }
     ]
 }

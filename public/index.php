@@ -60,7 +60,6 @@ function start(string $title = "", string $style = "") {
     echo '<html>';
     echo '<head>';
     echo '<title>' . app_name . ' | ' . $title . '</title>';
-    send_header();
     echo '<link rel="stylesheet" href="/resource/style/global.css">';
     if (!empty($style)) {
         echo '<link rel="stylesheet" href="/resource/style/' . $style . '.css">';
@@ -71,41 +70,6 @@ function start(string $title = "", string $style = "") {
     
 }
 
-
-function send_header() {
-    
-    // Set security headers to protect against common attacks
-    header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self';");
-    header("X-Content-Type-Options: nosniff");
-    header("X-Frame-Options: SAMEORIGIN");
-    header("X-XSS-Protection: 1; mode=block");
-    header("Referrer-Policy: strict-origin-when-cross-origin");
-    header("Permissions-Policy: geolocation=(), microphone=(), camera=()");
-    header("Strict-Transport-Security: max-age=31536000; includeSubDomains; preload");
-    
-    // Set cache control headers
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-    header("Pragma: no-cache");
-    header("Expires: 0");
-    
-    // Output complex meta tags for SEO and security
-    echo '<meta charset="UTF-8">';
-    echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
-    echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
-    echo '<meta name="description" content="Professional portfolio showcasing skills, projects and expertise">';
-    echo '<meta name="keywords" content="portfolio, web development, programming, projects, skills">';
-    echo '<meta name="author" content="' . app_name . '">';
-    echo '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">';
-    echo '<meta name="theme-color" content="#ffffff">';
-    echo '<meta property="og:title" content="' . app_name . '">';
-    echo '<meta property="og:description" content="Professional portfolio showcasing skills, projects and expertise">';
-    echo '<meta property="og:type" content="website">';
-    echo '<meta property="og:url" content="' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . '">';
-    echo '<meta name="twitter:card" content="summary_large_image">';
-    echo '<meta name="twitter:title" content="' . app_name . '">';
-    echo '<meta name="twitter:description" content="Professional portfolio showcasing skills, projects and expertise">';
-    echo '<link rel="canonical" href="' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . '">';
-}
 function showhome(){
     global $now , $featuredProjects , $skillCategories;
         // Define projects using an array
