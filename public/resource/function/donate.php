@@ -15,32 +15,26 @@ function donate(){
                     <div class="crypto-item">
                         <h3>Bitcoin (BTC)</h3>
                         <div class="crypto-address">
-                            <code>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
-                            <button class="copy-btn" onclick="copyToClipboard(\'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh\')">Copy</button>
+                            <code>18cq7C3Gegea7XVnEHbXDJ9EAJ5SWFfxrZ</code>
+                            <button class="copy-btn" onclick="copyToClipboard(\'18cq7C3Gegea7XVnEHbXDJ9EAJ5SWFfxrZ\')">Copy</button>
                         </div>
                     </div>
                     
                     <div class="crypto-item">
                         <h3>Ethereum (ETH)</h3>
                         <div class="crypto-address">
-                            <code>0x71C7656EC7ab88b098defB751B7401B5f6d8976F</code>
-                            <button class="copy-btn" onclick="copyToClipboard(\'0x71C7656EC7ab88b098defB751B7401B5f6d8976F\')">Copy</button>
+                            <code>0xb23D38832c86d3A56389473D2a8cE10B684bC902</code>
+                            <button class="copy-btn" onclick="copyToClipboard(\'0xb23D38832c86d3A56389473D2a8cE10B684bC902\')">Copy</button>
                         </div>
                     </div>
                     
-                    <div class="crypto-item">
-                        <h3>Tether (USDT)</h3>
-                        <div class="crypto-address">
-                            <code>TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY</code>
-                            <button class="copy-btn" onclick="copyToClipboard(\'TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY\')">Copy</button>
-                        </div>
-                    </div>
+                    
                     
                     <div class="crypto-item">
                         <h3>Dogecoin (DOGE)</h3>
                         <div class="crypto-address">
-                            <code>D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj</code>
-                            <button class="copy-btn" onclick="copyToClipboard(\'D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj\')">Copy</button>
+                            <code>DSGiCuzQPXiUmvKzBrEekkb1d5bvYnsNeY</code>
+                            <button class="copy-btn" onclick="copyToClipboard(\'DSGiCuzQPXiUmvKzBrEekkb1d5bvYnsNeY\')">Copy</button>
                         </div>
                     </div>
                 </div>

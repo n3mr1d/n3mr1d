@@ -12,14 +12,11 @@
 
 If you find my work valuable, consider supporting me through cryptocurrency donations:
 
-[![Bitcoin](https://img.shields.io/badge/Bitcoin-bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh-orange?style=flat-square&logo=bitcoin&logoColor=white)](bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh)
+[![Bitcoin](https://img.shields.io/badge/Bitcoin-18cq7C3Gegea7XVnEHbXDJ9EAJ5SWFfxrZ-orange?style=flat-square&logo=bitcoin&logoColor=white)](bitcoin:18cq7C3Gegea7XVnEHbXDJ9EAJ5SWFfxrZ)
 
-[![Ethereum](https://img.shields.io/badge/Ethereum-0x71C7656EC7ab88b098defB751B7401B5f6d8976F-blue?style=flat-square&logo=ethereum&logoColor=white)](ethereum:0x71C7656EC7ab88b098defB751B7401B5f6d8976F)
+[![Ethereum](https://img.shields.io/badge/Ethereum-0xb23D38832c86d3A56389473D2a8cE10B684bC902-blue?style=flat-square&logo=ethereum&logoColor=white)](ethereum:0xb23D38832c86d3A56389473D2a8cE10B684bC902)
 
-[![USDT](https://img.shields.io/badge/USDT-TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY-green?style=flat-square&logo=tether&logoColor=white)](tether:TQVsMt6HNqm7pQd5SyHBYxpnBhXpAGRBrY)
-
-[![Dogecoin](https://img.shields.io/badge/DOGE-D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj-yellow?style=flat-square&logo=dogecoin&logoColor=white)](dogecoin:D8vFz4p1L37jdg47HXKtSvC8bRBG6JaBfj)
-
+[![Dogecoin](https://img.shields.io/badge/DOGE-DSGiCuzQPXiUmvKzBrEekkb1d5bvYnsNeY-yellow?style=flat-square&logo=dogecoin&logoColor=white)](dogecoin:DSGiCuzQPXiUmvKzBrEekkb1d5bvYnsNeY)
 
 ## 💫 About Me
 
