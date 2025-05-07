@@ -34,51 +34,7 @@ function showform() {
         session_unset();
         header('Location: /admin');
         exit();
-    } elseif(isset($_POST['upload'])) {
-        // Handle file upload
-        if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0) {
-            $upload_dir = '../../../upload/';
-            
-            // Create directory if it doesn't exist
-            if(!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
-            $file_name = time() . '_' . basename($_FILES['cover']['name']);
-            $target_path = $upload_dir . $file_name;
-            
-            if(move_uploaded_file($_FILES['cover']['tmp_name'], $target_path)) {
-                // File uploaded successfully, now save to database
-                $title = htmlspecialchars($_POST['title']);
-                $deskrip = htmlspecialchars($_POST['deskrip']);
-                $uploadby = htmlspecialchars($_POST['uploadby']);
-                $category = $_POST['category'];
-                $link = htmlspecialchars($_POST['link']);
-                $view = htmlspecialchars($_POST['view']);
-                
-                try {
-                    $in = "INSERT INTO projects(cover_path, title, deskrip, uploadby, catagory, link, sample) 
-                           VALUES(:cover, :title, :deskrip, :uploadby, :catagory, :link, :view)";
-                    $stmt = $sql->prepare($in);
-                    $stmt->bindParam(':cover', $target_path);
-                    $stmt->bindParam(':title', $title);
-                    $stmt->bindParam(':deskrip', $deskrip);
-                    $stmt->bindParam(':uploadby', $uploadby);
-                    $stmt->bindParam(':catagory', $category);
-                    $stmt->bindParam(':link', $link);
-                    $stmt->bindParam(':view', $view);
-                    $stmt->execute();
-                    
-                    $error = '<div class="success-message">Project uploaded successfully!</div>';
-                } catch(PDOException $e) {
-                    $error = '<div class="error-message">Database error: ' . $e->getMessage() . '</div>';
-                }
-            } else {
-                $error = '<div class="error-message">Error uploading file!</div>';
-            }
-        } else {
-            $error = '<div class="error-message">Please select a valid image file!</div>';
-        }
-    }
+    } 
     
     start('upload', 'upload');
 
