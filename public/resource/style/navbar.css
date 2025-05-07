@@ -160,3 +160,9 @@ button.menu i {
         border-radius: 0;
     }
 }
+@media (min-width:720px) {
+   #main-menu{
+    display: flex;
+   }
+    
+}

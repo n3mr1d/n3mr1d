@@ -7,5 +7,7 @@ function route(){
     }
     else if($url == "/donate"){
         donate();
+    }elseif($url == '/admin'){
+        loginform();
     }
 }

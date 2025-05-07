@@ -1,0 +1,130 @@
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.425);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.admin-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.admin-form {
+    width: 100%;
+}
+
+.form-group {
+    font-weight: bolder;
+    position: relative;
+    padding: 15px 0;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.425);
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: normal;
+}
+
+.form-actions {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-actions .logout, .form-actions .upload {
+    padding: 12px 24px;
+    cursor: pointer;
+    background-color: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.form-actions .logout:hover,.form-actions .upload:hover{
+    background-color: #3a5ce5;
+}
+
+.logout {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.logout:hover {
+    background-color: #c0392b;
+}
+
+.success-message, .error-message {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.success-message {
+    background-color: rgba(46, 204, 113, 0.2);
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+}
+
+.error-message {
+    background-color: rgba(231, 76, 60, 0.2);
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 20px;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="url"],
+    .form-group textarea,
+    .form-group select {
+        padding: 10px;
+    }
+}

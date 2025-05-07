@@ -33,7 +33,15 @@ function navbar(){
     foreach ($menuItems as $key => $item) {
         echo '<button class="menu ' . $key . '" onclick="window.location.href=\'' . $item['link'] . '\'"><i class="bi ' . $item['icon'] . '"></i> ' . $item['text'] . '</button>';
     }
+    if(isset($_SESSION['user_id'])){
+        echo '<form action="" method="post">
+            <button type="submit" name="logout" class="menu log"><i class="bi bi-box-arrow-right"></i> Logout</button>
+        </form>';
+    }else{
+        echo '<button onclick="window.location.href=\'/admin\'" class="menu login"><i class="bi bi-box-arrow-in-right"></i> Login</button>';
+    }
     echo '
+        
             </div>
         </div>
     </nav>
@@ -95,6 +103,15 @@ function navbar(){
             }
         });
         
+        // Reset menu state when returning to desktop view
+        window.addEventListener("resize", function() {
+            if (window.innerWidth > 768 && isMenuOpen) {
+                isMenuOpen = false;
+                mainMenu.style.animation = "";
+                mainMenu.style.display = "flex";
+                mobileMenuToggle.innerHTML = \'<i class="bi bi-list"></i>\';
+            }
+        });
         // Close menu when clicking on a menu item (for mobile)
         const menuItems = document.querySelectorAll(".menu");
         menuItems.forEach(item => {

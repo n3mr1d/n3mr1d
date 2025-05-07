@@ -1,0 +1,31 @@
+.kontainerform{
+ display: flex;
+ width: 100%;
+ padding: 30px;   
+justify-items: center;
+justify-content: center;
+ background-color: rgba(0, 0, 0, 0.295);
+}
+.kontainerform .title{
+    font-weight: bolder;
+    font-size: large;
+    text-transform: uppercase;
+    text-align: center;
+}
+.login-kontainer{
+    padding: 40px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.486);
+}
+
+.inputform{
+    text-align: left;
+    display: inline;
+}
+.inputform label{
+    margin-bottom: 20px;
+}
+.form-actions input{
+    background-color: #4a6cf7;
+    color: var(--text-color);
+}
