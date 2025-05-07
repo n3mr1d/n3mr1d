@@ -32,8 +32,9 @@ function showform() {
     if(isset($_POST['logout'])) {
         session_destroy();
         session_unset();
-        header('Location: /admin');
-        exit();
+        // Use JavaScript for redirection instead of header()
+        echo '<script>window.location.href = "/admin";</script>';
+        return;
     } 
     
     start('upload', 'upload');
@@ -123,8 +124,9 @@ function loginform() {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['id'];
                 
-                header('Location: /admin');
-                exit();
+                // Use JavaScript for redirection instead of header()
+                echo '<script>window.location.href = "/admin";</script>';
+                return;
             } else {
                 $error = "Invalid username or password";
             }
@@ -211,8 +213,9 @@ function setupadmin() {
                 $stmt->bindParam(':user', $username);
                 $stmt->bindParam(':pass', $decrypt);
                 if($stmt->execute()) {
-                    header('Location: /admin');
-                    exit();
+                    // Use JavaScript for redirection instead of header()
+                    echo '<script>window.location.href = "/admin";</script>';
+                    return;
                 }
             } catch(PDOException $e) {
                 $error = 'Database error: '. $e->getMessage();
