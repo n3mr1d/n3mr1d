@@ -1,6 +1,6 @@
 <?php 
 function navbar(){
-    global $title;
+    global $now;
     
     echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">';
     echo '<link rel="stylesheet" href="/resource/style/navbar.css">';
@@ -31,8 +31,10 @@ function navbar(){
     
     // Loop through the array to generate menu items
     foreach ($menuItems as $key => $item) {
-        echo '<button class="menu ' . $key . '" onclick="window.location.href=\'' . $item['link'] . '\'"><i class="bi ' . $item['icon'] . '"></i> ' . $item['text'] . '</button>';
+        $activeClass = ($now == $key) ? 'active' : '';
+        echo '<button class="menu ' . $key . ' ' . $activeClass . '" onclick="window.location.href=\'' . $item['link'] . '\'"><i class="bi ' . $item['icon'] . '"></i> ' . $item['text'] . '</button>';
     }
+    
     if(isset($_SESSION['user_id'])){
         echo '<form action="" method="post">
             <button type="submit" name="logout" class="menu log"><i class="bi bi-box-arrow-right"></i> Logout</button>
