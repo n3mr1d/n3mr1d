@@ -3,19 +3,19 @@
 // define global variable
 define("app_name", "Portfolio");
 define("email", "nemraid@protonmail.com");
-// define("DBUSER", "avnadmin");
-// define("DBPASS", "AVNS_AwANpZxyr-aGDi6V70P");
-// define("DBHOST", "mysql-b6cf9cf-exitings-93c2.f.aivencloud.com");
-// define("DBNAME", "defaultdb");
-// define("DBPORT", "25268");
-define("DBUSER", "root");
-define("DBPASS", "180406");
-define("DBHOST", "localhost");
-define("DBNAME", "testing");
+define("DBUSER", "avnadmin");
+define("DBPASS", "AVNS_AwANpZxyr-aGDi6V70P");
+define("DBHOST", "mysql-b6cf9cf-exitings-93c2.f.aivencloud.com");
+define("DBNAME", "defaultdb");
+define("DBPORT", "25268");
+// define("DBUSER", "root");
+// define("DBPASS", "180406");
+// define("DBHOST", "localhost");
+// define("DBNAME", "testing");
 // define("DBPORT", "3306");
-// ";port=" . DBPORT . ";ssl-mode=REQUIRED",
+
 try {
-    $sql = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME , DBUSER, DBPASS);
+    $sql = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME . ";port=" . DBPORT . ";ssl-mode=REQUIRED" , DBUSER, DBPASS);
     $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
@@ -173,8 +173,8 @@ function showhome(){
                             <img src="' . htmlspecialchars($project->cover_path) . '" alt="' . htmlspecialchars($project->title) . '">
                             <div class="project-overlay">
                                 <div class="project-links">
-                                    <a href="' . htmlspecialchars($project->link) . '" class="project-link"><i class="bi bi-eye-fill"></i> View</a>
-                                    <a href="#" class="project-link"><i class="bi bi-github"></i> Code</a>
+                                    <a href="' . htmlspecialchars($project->sample) . '" class="project-link"><i class="bi bi-eye-fill"></i> View</a>
+                                    <a href="'. htmlspecialchars($project->link) .'" class="project-link"><i class="bi bi-github"></i> Code</a>
                                 </div>
                             </div>
                         </div>
