@@ -137,7 +137,7 @@ function showhome(){
           
           try {
               // Corrected SQL query with proper ORDER BY syntax and LIMIT for pagination
-              $projectQuery = "SELECT title, cover_path, deskrip, uploadby, catagory, link, createat FROM projects ORDER BY createat DESC LIMIT :offset, :limit";
+              $projectQuery = "SELECT title, cover_path, deskrip, uploadby, catagory, link,sample, createat FROM projects ORDER BY createat DESC LIMIT :offset, :limit";
               $stmt = $sql->prepare($projectQuery);
               $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
               $stmt->bindParam(':limit', $projectsPerPage, PDO::PARAM_INT);
