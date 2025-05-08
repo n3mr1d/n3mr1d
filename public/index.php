@@ -1,26 +1,26 @@
 <?php
-// inistial
-// difine global variable
+// initial
+// define global variable
 define("app_name", "Portfolio");
 define("email", "nemraid@protonmail.com");
-define("DBUSER", "sql12776625");
-define("DBPASS", "b8ie1pZpEB");
-define("DBHOST", "sql12.freesqldatabase.com");
-define("DBNAME", "sql12776625");
-define("DBPORT", "3306");
-// define("DBUSER", "root");
-// define("DBPASS", "180406");
-// define("DBHOST", "localhost");
-// define("DBNAME", "testing");
+// define("DBUSER", "avnadmin");
+// define("DBPASS", "AVNS_AwANpZxyr-aGDi6V70P");
+// define("DBHOST", "mysql-b6cf9cf-exitings-93c2.f.aivencloud.com");
+// define("DBNAME", "defaultdb");
+// define("DBPORT", "25268");
+define("DBUSER", "root");
+define("DBPASS", "180406");
+define("DBHOST", "localhost");
+define("DBNAME", "testing");
 // define("DBPORT", "3306");
+// ";port=" . DBPORT . ";ssl-mode=REQUIRED",
 try {
-    $sql = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME, DBUSER, DBPASS);
+    $sql = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME , DBUSER, DBPASS);
     $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 $error = '';
-
 
 $skillCategories = [
 'Frontend Development' => [
@@ -43,6 +43,7 @@ $skillCategories = [
 require_once 'autoload.php';
 route();
 $now = "";
+
 function start(string $title = "", string $style = "") {
     global $now,$error;
     $now = $title;
@@ -55,7 +56,6 @@ function start(string $title = "", string $style = "") {
     if (!empty($style)) {
         echo '<link rel="stylesheet" href="/resource/style/' . $style . '.css">';
     }
-    echo'<script src="/public/resource/script/script.js"></script>';
     echo '</head>';
     echo '<body>';
     navbar();
@@ -68,6 +68,7 @@ function showhome(){
     // Define projects using an array
    
     start('Home', 'home');
+
     echo '<main class="kontainer-main">
         <div class="hero-section">
             <div class="tech-overlay"></div>
@@ -128,27 +129,32 @@ function showhome(){
                 </div>';
             }
             
-            echo '</span>
-        </div>';
+            echo '</div>';
           // Define pagination variables
           $projectsPerPage = 6;
           $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
           $offset = ($page - 1) * $projectsPerPage;
           
-          // Corrected SQL query with proper ORDER BY syntax and LIMIT for pagination
-          $projectQuery = "SELECT title, cover_path, deskrip, uploadby, catagory, link, createat FROM projects ORDER BY createat DESC LIMIT :offset, :limit";
-          $stmt = $sql->prepare($projectQuery);
-          $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-          $stmt->bindParam(':limit', $projectsPerPage, PDO::PARAM_INT);
-          $stmt->execute();
-          $projects = $stmt->fetchAll(PDO::FETCH_OBJ);
-          
-          // Count total projects for pagination
-          $countQuery = "SELECT COUNT(*) as total FROM projects";
-          $countStmt = $sql->prepare($countQuery);
-          $countStmt->execute();
-          $totalProjects = $countStmt->fetch(PDO::FETCH_OBJ)->total;
-          $totalPages = ceil($totalProjects / $projectsPerPage);
+          try {
+              // Corrected SQL query with proper ORDER BY syntax and LIMIT for pagination
+              $projectQuery = "SELECT title, cover_path, deskrip, uploadby, catagory, link, createat FROM projects ORDER BY createat DESC LIMIT :offset, :limit";
+              $stmt = $sql->prepare($projectQuery);
+              $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+              $stmt->bindParam(':limit', $projectsPerPage, PDO::PARAM_INT);
+              $stmt->execute();
+              $projects = $stmt->fetchAll(PDO::FETCH_OBJ);
+              
+              // Count total projects for pagination
+              $countQuery = "SELECT COUNT(*) as total FROM projects";
+              $countStmt = $sql->prepare($countQuery);
+              $countStmt->execute();
+              $totalProjects = $countStmt->fetch(PDO::FETCH_OBJ)->total;
+              $totalPages = ceil($totalProjects / $projectsPerPage);
+          } catch(PDOException $e) {
+              echo "Query failed: " . $e->getMessage();
+              $projects = [];
+              $totalPages = 0;
+          }
 
         echo'
             <div class="featured-projects" id="project">
@@ -160,33 +166,34 @@ function showhome(){
             
           
             // Display projects
-            if(!empty($project)){
-            foreach ($projects as $project) {
-                echo '<div class="project-card">
-                    <div class="project-image">
-                        <img src="' . $project->cover_path . '" alt="' . $project->title . '">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="' . $project->link . '" class="project-link"><i class="bi bi-eye-fill"></i> View</a>
-                                <a href="#" class="project-link"><i class="bi bi-github"></i> Code</a>
+            if(!empty($projects)){
+                foreach ($projects as $project) {
+                    echo '<div class="project-card">
+                        <div class="project-image">
+                            <img src="' . htmlspecialchars($project->cover_path) . '" alt="' . htmlspecialchars($project->title) . '">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="' . htmlspecialchars($project->link) . '" class="project-link"><i class="bi bi-eye-fill"></i> View</a>
+                                    <a href="#" class="project-link"><i class="bi bi-github"></i> Code</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>' . $project->title . '</h3>
-                        <p>' . $project->deskrip . '</p>
-                        <div class="project-tech">
-                            <span>' . $project->catagory . '</span>
-                            <span>By: ' . $project->uploadby . '</span>
-                            <span>' . date('d M Y', strtotime($project->createat)) . '</span>
+                        <div class="project-info">
+                            <h3>' . htmlspecialchars($project->title) . '</h3>
+                            <p>' . htmlspecialchars($project->deskrip) . '</p>
+                            <div class="project-tech">
+                                <span>' . htmlspecialchars($project->catagory) . '</span>
+                                <span>By: ' . htmlspecialchars($project->uploadby) . '</span>
+                                <span>' . date('d M Y', strtotime($project->createat)) . '</span>
+                            </div>
                         </div>
-                    </div>
-                </div>';
+                    </div>';
+                }
+            } else {
+                echo '<div class="no-projects"><h2>Coming soon</h2></div>';
             }
-        }else{
-            echo'<h2>comming soon</h2>';
-        }
             
+            echo '</div>'; // Close projects-grid
             
             // Pagination controls
             if ($totalPages > 1) {
@@ -214,7 +221,7 @@ function showhome(){
             }
 
       
-    echo '</main>';
+    echo '</div></main>';
     footer();
     echo '<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>';
     echo'<script>
@@ -418,11 +425,13 @@ document.addEventListener("DOMContentLoaded", function() {
     </body></html>
     ';
 }
+if(isset($_POST['upload'])) {
+upload();
+}
 function upload(){
-    if(isset($_POST['upload'])) {
-        // Handle file upload
+    global $sql, $error;
         if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0) {
-            $upload_dir = '/upload';
+            $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
             
             // Create directory if it doesn't exist
             if(!file_exists($upload_dir)) {
@@ -430,13 +439,14 @@ function upload(){
             }
             $file_name = time() . '_' . basename($_FILES['cover']['name']);
             $target_path = $upload_dir . $file_name;
+            $web_path = '/upload/' . $file_name;
             
             if(move_uploaded_file($_FILES['cover']['tmp_name'], $target_path)) {
                 // File uploaded successfully, now save to database
                 $title = htmlspecialchars($_POST['title']);
                 $deskrip = htmlspecialchars($_POST['deskrip']);
                 $uploadby = htmlspecialchars($_POST['uploadby']);
-                $category = $_POST['category'];
+                $category = htmlspecialchars($_POST['category']);
                 $link = htmlspecialchars($_POST['link']);
                 $view = htmlspecialchars($_POST['view']);
                 
@@ -444,7 +454,7 @@ function upload(){
                     $in = "INSERT INTO projects(cover_path, title, deskrip, uploadby, catagory, link, sample) 
                            VALUES(:cover, :title, :deskrip, :uploadby, :catagory, :link, :view)";
                     $stmt = $sql->prepare($in);
-                    $stmt->bindParam(':cover', $target_path);
+                    $stmt->bindParam(':cover', $web_path);
                     $stmt->bindParam(':title', $title);
                     $stmt->bindParam(':deskrip', $deskrip);
                     $stmt->bindParam(':uploadby', $uploadby);
@@ -463,5 +473,5 @@ function upload(){
         } else {
             $error = '<div class="error-message">Please select a valid image file!</div>';
         }
-    }
+
 }

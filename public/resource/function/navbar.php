@@ -23,9 +23,9 @@ function navbar(){
     // Define menu items in an array
     $menuItems = [
         'home' => ['icon' => 'bi-house-fill', 'text' => 'Home', 'link' => '/'],
-        'skill' => ['icon' => 'bi-code-slash', 'text' => 'Skill', 'link' => '#skills'],
-        'about' => ['icon' => 'bi-person-fill', 'text' => 'About', 'link' => '#about'],
-        'project' => ['icon' => 'bi-diagram-3-fill', 'text' => 'Project', 'link' => '#project'],
+        'skill' => ['icon' => 'bi-code-slash', 'text' => 'Skill', 'link' => '/#skills'],
+        'about' => ['icon' => 'bi-person-fill', 'text' => 'About', 'link' => '/#about'],
+        'project' => ['icon' => 'bi-diagram-3-fill', 'text' => 'Project', 'link' => '/#project'],
         'donate' => ['icon' => 'bi-wallet2', 'text' => 'Donate', 'link' => '/donate']
     ];
     
@@ -36,9 +36,7 @@ function navbar(){
     }
     
     if(isset($_SESSION['user_id'])){
-        echo '<form action="" method="post">
-            <button type="submit" name="logout" class="menu log"><i class="bi bi-box-arrow-right"></i> Logout</button>
-        </form>';
+        echo '<button onclick="window.location.href=\'/admin\'" class="menu log"><i class="bi bi-box-arrow-right"></i> Admin</button>';
     }else{
         echo '<button onclick="window.location.href=\'/admin\'" class="menu login"><i class="bi bi-box-arrow-in-right"></i> Login</button>';
     }

@@ -1,5 +1,6 @@
 <?php
 try {
+    global $sql;
     $data = "CREATE TABLE IF NOT EXISTS projects(
     id int AUTO_INCREMENT PRIMARY KEY,
     cover_path VARCHAR(255),
@@ -20,6 +21,26 @@ try {
     echo '<div class="error-message">Database error: '. $e->getMessage() . '</div>';
 }
 
+// Ensure session is started
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+if(isset($_POST['logout'])) {
+    // Proper session cleanup
+    $_SESSION = array();
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+    session_destroy();
+    echo '<script>window.location.href = "/admin";</script>';
+    exit;
+} 
+
 // Function to display project upload form
 function showform() {
     global $sql, $error;
@@ -29,21 +50,13 @@ function showform() {
         return;
     }
     
-    if(isset($_POST['logout'])) {
-        session_destroy();
-        session_unset();
-        // Use JavaScript for redirection instead of header()
-        echo '<script>window.location.href = "/admin";</script>';
-        return;
-    } 
-    
     start('upload', 'upload');
 
     echo '<div class="admin-container">
         <h2>Admin Panel - Upload Project</h2>';
         
-    if(isset($error)) {
-        echo $error;
+    if(isset($error) && !empty($error)) {
+        echo '<div class="error-message">' . $error . '</div>';
     }
         
     echo '<form action="" method="post" enctype="multipart/form-data" class="admin-form">
@@ -89,6 +102,10 @@ function showform() {
         </form>
         </div>
     </div>';
+    // show project deleted or not 
+    showproj();
+    // Complete the HTML document
+    echo '</body></html>';
 }
 
 function loginform() {
@@ -126,7 +143,7 @@ function loginform() {
                 
                 // Use JavaScript for redirection instead of header()
                 echo '<script>window.location.href = "/admin";</script>';
-                return;
+                exit;
             } else {
                 $error = "Invalid username or password";
             }
@@ -142,7 +159,7 @@ function loginform() {
                 <span class="title">Login Admin</span>
                 <div class="inputform">';
                 
-        if(isset($error)) {
+        if(isset($error) && !empty($error)) {
             echo '<div class="warn">'. $error . '</div>';
         }
         
@@ -174,7 +191,7 @@ function setupadmin() {
     echo '<div class="admin-setup-container">
         <h2>Initial Admin Setup</h2>';
         
-    if(isset($error)) {
+    if(isset($error) && !empty($error)) {
         echo '<div class="warn">'. $error . '</div>';
     }
     
@@ -215,11 +232,14 @@ function setupadmin() {
                 if($stmt->execute()) {
                     // Use JavaScript for redirection instead of header()
                     echo '<script>window.location.href = "/admin";</script>';
-                    return;
+                    exit;
                 }
             } catch(PDOException $e) {
                 $error = 'Database error: '. $e->getMessage();
             }
         }
     }
+    
+    // Complete the HTML document
+    echo '</body></html>';
 }
