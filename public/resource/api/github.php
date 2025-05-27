@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-
 // Get the raw POST data
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -18,27 +17,23 @@ $headers = [
     'User-Agent: PHP'
 ];
 
-// Initialize cURL
-$ch = curl_init();
+// Use file_get_contents as fallback when cURL is not available
+$options = [
+    'http' => [
+        'header' => implode("\r\n", $headers),
+        'method' => 'POST',
+        'content' => json_encode($data),
+        'ignore_errors' => true
+    ]
+];
 
-// Set cURL options
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+$context = stream_context_create($options);
+$response = file_get_contents($url, false, $context);
 
-// Execute the request
-$response = curl_exec($ch);
-
-// Check for errors
-if (curl_errno($ch)) {
-    echo json_encode(['error' => curl_error($ch)]);
+if ($response === false) {
+    echo json_encode(['error' => 'Failed to fetch data from GitHub API']);
     exit;
 }
-
-// Close cURL
-curl_close($ch);
 
 // Output the response
 echo $response;
