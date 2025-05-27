@@ -15,7 +15,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $url = 'https://api.github.com/graphql';
 
 // Personal access token
-$token = getenv('GITHUB_TOKEN');
+$token = GITHUB_TOKEN;
 
 // Prepare headers
 $headers = [
