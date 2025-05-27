@@ -1,39 +1,67 @@
 <?php
-// Get the raw POST data
-$data = json_decode(file_get_contents('php://input'), true);
+header('Content-Type: application/json');
 
-// GitHub API endpoint
-$url = 'https://api.github.com/graphql';
+try {
+    // Get the raw POST data
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception('Invalid JSON input');
+    }
 
-// Personal access token from environment variable
-$token = getenv('GITHUB_TOKEN');
+    // GitHub API endpoint
+    $url = 'https://api.github.com/graphql';
 
-// Prepare headers
-$headers = [
-    'Authorization: bearer ' . $token,
-    'Content-Type: application/json',
-    'User-Agent: PHP'
-];
+    // Personal access token from environment variable
+    $token = getenv('GITHUB_TOKEN');
+    if (!$token) {
+        throw new Exception('GitHub token not configured');
+    }
 
-// Use file_get_contents as fallback when cURL is not available
-$options = [
-    'http' => [
-        'header' => implode("\r\n", $headers),
-        'method' => 'POST',
-        'content' => json_encode($data),
-        'ignore_errors' => true
-    ]
-];
+    // Initialize cURL if available
+    if (function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: bearer ' . $token,
+            'Content-Type: application/json',
+            'User-Agent: PHP'
+        ]);
+        
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            throw new Exception('cURL error: ' . curl_error($ch));
+        }
+        curl_close($ch);
+    } else {
+        // Fallback to file_get_contents
+        $headers = [
+            'Authorization: bearer ' . $token,
+            'Content-Type: application/json',
+            'User-Agent: PHP'
+        ];
 
-$context = stream_context_create($options);
-$response = file_get_contents($url, false, $context);
+        $options = [
+            'http' => [
+                'header' => implode("\r\n", $headers),
+                'method' => 'POST',
+                'content' => json_encode($data),
+                'ignore_errors' => true
+            ]
+        ];
 
-if ($response === false) {
-    $output = json_encode(['error' => 'Failed to fetch data from GitHub API']);
-} else {
-    $output = $response;
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+        if ($response === false) {
+            throw new Exception('Failed to fetch data from GitHub API');
+        }
+    }
+
+    // Output the response
+    echo $response;
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => $e->getMessage()]);
 }
-
-// Return data as array instead of using echo/header
-return $output;
 ?>
