@@ -47,8 +47,7 @@ route();
 
 
 function print_start(string $title, string $css=""){
-  global $token;
-  
+
   echo'  <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -73,11 +72,12 @@ function print_start(string $title, string $css=""){
 echo'</head>
     <body>';
     navbar();
-    echo"<script> const GITHUB_TOKEN = $token </script>";
 
 }
 function jsallow(string $name){
-        echo'<script src="/resource/script/'. $name .'.js"></script>';
+    global $token;
+
+        echo'<script src="/resource/script/'. $name .'.js"> const GITHUB_TOKEN = '. $token .' </script>';
 }function showhome() {
   global $educationHistory;
 
