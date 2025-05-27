@@ -1,67 +1,50 @@
 <?php
+// API endpoint untuk mengambil data GitHub menggunakan GraphQL
+
 header('Content-Type: application/json');
 
-try {
-    // Get the raw POST data
-    $data = json_decode(file_get_contents('php://input'), true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        throw new Exception('Invalid JSON input');
-    }
+// Ambil token dari environment variable
+$github_token = getenv('GITHUB_TOKEN');
 
-    // GitHub API endpoint
-    $url = 'https://api.github.com/graphql';
+// Ambil body request (GraphQL query dari client)
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
 
-    // Personal access token from environment variable
-    $token = getenv('GITHUB_TOKEN');
-    if (!$token) {
-        throw new Exception('GitHub token not configured');
-    }
-
-    // Initialize cURL if available
-    if (function_exists('curl_init')) {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: bearer ' . $token,
-            'Content-Type: application/json',
-            'User-Agent: PHP'
-        ]);
-        
-        $response = curl_exec($ch);
-        if (curl_errno($ch)) {
-            throw new Exception('cURL error: ' . curl_error($ch));
-        }
-        curl_close($ch);
-    } else {
-        // Fallback to file_get_contents
-        $headers = [
-            'Authorization: bearer ' . $token,
-            'Content-Type: application/json',
-            'User-Agent: PHP'
-        ];
-
-        $options = [
-            'http' => [
-                'header' => implode("\r\n", $headers),
-                'method' => 'POST',
-                'content' => json_encode($data),
-                'ignore_errors' => true
-            ]
-        ];
-
-        $context = stream_context_create($options);
-        $response = file_get_contents($url, false, $context);
-        if ($response === false) {
-            throw new Exception('Failed to fetch data from GitHub API');
-        }
-    }
-
-    // Output the response
-    echo $response;
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
+// Validasi query
+if (!isset($data['query'])) {
+    echo json_encode(['error' => 'No GraphQL query provided']);
+    exit;
 }
-?>
+
+$query = $data['query'];
+
+// Siapkan request ke GitHub GraphQL API
+$ch = curl_init('https://api.github.com/graphql');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['query' => $query]));
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Authorization: Bearer ' . $github_token,
+    'Content-Type: application/json',
+    'User-Agent: PHP-cURL' // User-Agent wajib untuk GitHub API
+]);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo json_encode(['error' => curl_error($ch)]);
+    curl_close($ch);
+    exit;
+}
+
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($http_code !== 200) {
+    echo json_encode(['error' => 'GitHub API returned HTTP ' . $http_code, 'response' => $response]);
+    exit;
+}
+
+// Output response dari GitHub langsung ke client
+echo $response;
+
