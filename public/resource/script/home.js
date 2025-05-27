@@ -1,7 +1,7 @@
 const text = "HI. I'm <span id='name'></span> ...";
 const speed = 100;
 let i = 0;
-const token = process.env.NAME ;
+
 function typewriter() {
   if (i < text.length) {
     let currentChar = text.charAt(i);
