@@ -6,7 +6,7 @@ define("DBHOST", getenv("DBHOST"));
 define("DBNAME", getenv("DBNAME"));
 define("DBPASS", getenv("DBPASS"));
 define("DBUSER", getenv("DBUSER"));
-define("GITHUB_TOKEN", getenv("GITHUB_TOKEN"));
+$token = getenv("GITHUB_TOKEN");
 
 
 // define social media link
@@ -47,6 +47,8 @@ route();
 
 
 function print_start(string $title, string $css=""){
+  global $token;
+  
   echo'  <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -71,6 +73,7 @@ function print_start(string $title, string $css=""){
 echo'</head>
     <body>';
     navbar();
+    echo"<script> const GITHUB_TOKEN = $token </script>";
 
 }
 function jsallow(string $name){

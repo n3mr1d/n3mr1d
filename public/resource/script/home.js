@@ -136,10 +136,10 @@ window.addEventListener('scroll', function () {
   }
 
 });
-
-fetch("resource/api/github.php", {
+fetch("https://api.github.com/graphql", {
   method: "POST",
   headers: {
+    "Authorization": "Bearer " + GITHUB_TOKEN,
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
@@ -191,15 +191,7 @@ fetch("resource/api/github.php", {
 })
   .then(res => res.json())
   .then(data => {
-    // Handle error from backend
-    if (data.error) {
-      throw new Error(data.error);
-    }
-    // If backend returns {data: ...}
-    const user = data.data && data.data.viewer ? data.data.viewer : null;
-    if (!user) {
-      throw new Error("No user data found in GitHub response");
-    }
+    const user = data.data.viewer;
     const username = user.login;
     const avatarUrl = user.avatarUrl;
     const bio = user.bio;
@@ -208,6 +200,7 @@ fetch("resource/api/github.php", {
     const followers = user.followers.totalCount;
     const following = user.following.totalCount;
     const contributionData = user.contributionsCollection.contributionCalendar;
+
 
     document.getElementById('username').innerHTML = username;
     document.getElementById('bio').textContent = bio || 'No bio available';
@@ -226,6 +219,7 @@ fetch("resource/api/github.php", {
   })
   .catch(error => {
     console.error("Error fetching GitHub data:", error);
+    
     document.getElementById('username').textContent = 'Error loading profile';
     document.getElementById('bio').textContent = 'Could not load GitHub data. Please try again later.';
   });
