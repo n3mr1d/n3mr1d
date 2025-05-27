@@ -20,4 +20,3 @@ autoload('database');
 autoload('route');
 autoload('form');
 autoload('validate');
-require_once __DIR__ . '/resource/api/github.php';

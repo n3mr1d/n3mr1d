@@ -1,14 +1,12 @@
 <?php
-header('Content-Type: application/json');
-
 // Get the raw POST data
 $data = json_decode(file_get_contents('php://input'), true);
 
 // GitHub API endpoint
 $url = 'https://api.github.com/graphql';
 
-// Personal access token
-$token = GITHUB_TOKEN;
+// Personal access token from environment variable
+$token = getenv('GITHUB_TOKEN');
 
 // Prepare headers
 $headers = [
@@ -31,10 +29,11 @@ $context = stream_context_create($options);
 $response = file_get_contents($url, false, $context);
 
 if ($response === false) {
-    echo json_encode(['error' => 'Failed to fetch data from GitHub API']);
-    exit;
+    $output = json_encode(['error' => 'Failed to fetch data from GitHub API']);
+} else {
+    $output = $response;
 }
 
-// Output the response
-echo $response;
+// Return data as array instead of using echo/header
+return $output;
 ?>
