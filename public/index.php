@@ -6,7 +6,7 @@ define("DBHOST", getenv("DBHOST"));
 define("DBNAME", getenv("DBNAME"));
 define("DBPASS", getenv("DBPASS"));
 define("DBUSER", getenv("DBUSER"));
-
+define("GITHUB_TOKEN", getenv("GITHUB_TOKEN"));
 
 
 // define social media link
