@@ -1,6 +1,13 @@
 <?php
 header('Content-Type: application/json');
 
+// Check if the request method is POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['error' => 'Method Not Allowed']);
+    exit;
+}
+
 // Get the raw POST data
 $data = json_decode(file_get_contents('php://input'), true);
 

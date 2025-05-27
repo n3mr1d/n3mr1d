@@ -15,7 +15,6 @@ function autoload(string $fun) {
         trigger_error("Function file '$fun.php' not found", E_USER_WARNING);
     }
 }
-
 autoload('navbar');
 autoload('database');
 autoload('route');
