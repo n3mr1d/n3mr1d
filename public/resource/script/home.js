@@ -139,7 +139,7 @@ window.addEventListener('scroll', function () {
 fetch("https://api.github.com/graphql", {
   method: "POST",
   headers: {
-    "Authorization": "Bearer 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",
+    "Authorization": "Bearer ",
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
