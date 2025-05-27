@@ -1,0 +1,90 @@
+/* 
+   Dark mode styles for admin add project form
+   (see showaddprojectform in form.php)
+*/
+
+body {
+    color: #f3f3f3;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.kontainer-form {
+    background: #23272b;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    padding: 2rem 2.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.form-header h2,
+.form-header p {
+    color: #f3f3f3;
+}
+
+.form-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #b0b3b8;
+    font-size: 1.1rem;
+}
+
+.kontainer-text {
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    color: #e0e0e0;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-group .required {
+    color: #ff6b6b;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="url"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid #33373a;
+    border-radius: 6px;
+    background: #2a2e32;
+    color: #f3f3f3;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+button {
+    background: #007bff;
+    color: #f3f3f3;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #0056b3;
+}
+

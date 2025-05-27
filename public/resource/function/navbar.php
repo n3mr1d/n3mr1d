@@ -1,150 +1,210 @@
-<?php 
-function navbar(){
-    global $now;
+<?php
+
+function navbar() {
+    global $db;
+    $currentPath = $_SERVER["REQUEST_URI"];
     
-    echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">';
-    echo '<link rel="stylesheet" href="/resource/style/navbar.css">';
-    echo '
-    <nav class="nav-container">
-        <div class="kontainer-nav">
-            <div class="kontainer hire" id="hire"><a href="https://www.freelancer.com/u/n3mr1d/" class="menu"><i class="bi bi-briefcase-fill"></i> Hire me</a></div>
-            <div class="kontainer clock" id="time">
-    ';
-    echo '<i class="bi bi-clock-fill"></i><span class="clock"></span>';
-    
-    echo '
-            </div>
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <i class="bi bi-list"></i>
-            </div>
-            <div class="kontainer menu" id="main-menu">
-    ';
-    
-    // Define menu items in an array
+    // Define menu items with their properties
     $menuItems = [
-        'home' => ['icon' => 'bi-house-fill', 'text' => 'Home', 'link' => '/'],
-        'skill' => ['icon' => 'bi-code-slash', 'text' => 'Skill', 'link' => '/#skills'],
-        'about' => ['icon' => 'bi-person-fill', 'text' => 'About', 'link' => '/#about'],
-        'project' => ['icon' => 'bi-diagram-3-fill', 'text' => 'Project', 'link' => '/#project'],
-        'donate' => ['icon' => 'bi-wallet2', 'text' => 'Donate', 'link' => '/donate']
+        'Home'=>[
+            'label'=>'Home',
+            'class'=>'donate',
+            'link'=>'/index.php',
+            'icon'=> 'fa-home'
+        ],
+        'About' => [
+            'label' => 'About', 
+            'class' => 'iniclasicon', 
+            'link' => 'index.php#uwu',
+            'icon' => 'fa-user'
+        ],
+        'Project' => [
+            'label' => 'Projects', 
+            'class' => 'iniclasicon', 
+            'link' => 'index.php#awili',
+            'icon' => 'fa-code'
+        ],
+        'Donate' => [
+            'label' => 'Donate', 
+            'class' => 'donate', 
+            'link' => '/donate',
+            'icon' => 'fa-heart'
+        ]
     ];
     
-    // Loop through the array to generate menu items
-    foreach ($menuItems as $key => $item) {
-        $activeClass = ($now == $key) ? 'active' : '';
-        echo '<button class="menu ' . $key . ' ' . $activeClass . '" onclick="window.location.href=\'' . $item['link'] . '\'"><i class="bi ' . $item['icon'] . '"></i> ' . $item['text'] . '</button>';
+    $isLoggedIn = isset($_SESSION['user_id']);
+    
+    // Generate desktop navigation
+    echo '<nav class="desktop-nav normal" id="desktop-nav">';
+    echo '<div class="kontainer-nav">';
+    echo '<a href="/" class="logo-container">';
+    echo '<div class="logo-kontainer"><img class="imglogo" src="resource/src/logo/logo.svg"><span class="titlelogo">N3mr1d.dev</span></div>';
+    echo '</a>';
+    echo '</div>';
+    
+    echo '<div class="kontainer-menu">';
+    
+    // Generate menu items
+    foreach ($menuItems as $menu => $details) {
+        $name = explode('/', $currentPath);
+        $links = explode('/', $details['link']);
+        $activeClass = '';
+        
+        // Fix active class logic
+        if (!empty($name[1]) && !empty($links[1]) && $name[1] === $links[1]) {
+            $activeClass = 'active';
+        } elseif ($details['link'] === '/index.php' && ($currentPath === '/' || $currentPath === '/index.php')) {
+            $activeClass = 'active';
+        }
+        
+        echo '<a class="' . $details['class'] . ' ' . $activeClass . '" href="' . $details['link'] . '" data-navitem="' . strtolower($menu) . '">';
+        echo '<i class="fas ' . $details['icon'] . '"></i> ';
+        echo $details['label'];
+        echo '</a>';
     }
     
-    if(isset($_SESSION['user_id'])){
-        echo '<button onclick="window.location.href=\'/admin\'" class="menu log"><i class="bi bi-box-arrow-right"></i> Admin</button>';
-    }else{
-        echo '<button onclick="window.location.href=\'/admin\'" class="menu login"><i class="bi bi-box-arrow-in-right"></i> Login</button>';
+    // Authentication links
+    if ($isLoggedIn) {
+        echo '<div class="user-dropdown" id="userDropdown">';
+        echo '<button class="dropbtn" onclick="toggleUserDropdown()">';
+        echo '<i class="fas fa-user"></i> <i class="fas fa-caret-down"></i>';
+        echo '</button>';
+        echo '<div class="dropdown-content" id="dropdownContent">';
+        echo '<a href="/dashboard"><i class="fas fa-cog"></i> Dashboard</a>';
+        echo '<a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>';
+        echo '</div>';
+        echo '</div>';
+    } else {
+        echo '<a class="auth-button login-btn" href="/login" id="loginBtn">';
+        echo '<i class="fas fa-sign-in-alt"></i> Login';
+        echo '</a>';
     }
-    echo '
-        
-            </div>
-        </div>
-    </nav>
-    ';
-    echo '<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Clock functionality
-        function updateClock() {
-            const clockElement = document.getElementById("time");
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, "0");
-            const minutes = now.getMinutes().toString().padStart(2, "0");
-            const seconds = now.getSeconds().toString().padStart(2, "0");
-            
-            if (clockElement) {
-                const clockSpan = clockElement.querySelector(".clock");
-                if (clockSpan) {
-                    clockSpan.innerHTML = hours + ":" + minutes + ":" + seconds;
-                }
-            }
+
+    echo '</div>';
+    echo '</nav>';
+    
+    // Mobile navigation
+    echo '<nav class="mobile-nav" id="mobileNav">';
+    echo '<div class="mobile-menu-container" id="mobileMenuContainer">';
+    
+    // Mobile menu items
+    foreach ($menuItems as $menu => $details) {
+        $activeClass = '';
+        if (!empty($name[1]) && !empty($links[1]) && $name[1] === $links[1]) {
+            $activeClass = 'active';
+        } elseif ($details['link'] === '/index.php' && ($currentPath === '/' || $currentPath === '/index.php')) {
+            $activeClass = 'active';
         }
         
-        // Update clock immediately and then every second
-        updateClock();
-        setInterval(updateClock, 1000);
-        
-        // Responsive navigation functionality
-        const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
-        const mainMenu = document.getElementById("main-menu");
-        let isMenuOpen = false;
-        
-        // Function to check window size and adjust menu visibility
-        function checkWindowSize() {
-            if (window.innerWidth <= 768) {
-                mobileMenuToggle.style.display = "block";
-                if (!isMenuOpen) {
-                    mainMenu.style.display = "none";
-                }
-            } else {
-                mobileMenuToggle.style.display = "none";
-                mainMenu.style.display = "flex";
-            }
+        echo '<a class="mobile-menu-item ' . $activeClass . '" href="' . $details['link'] . '" data-navitem="' . strtolower($menu) . '">';
+        echo '<i class="fas ' . $details['icon'] . '"></i> ';
+        echo $details['label'];
+        echo '</a>';
+    }
+    
+    // Mobile authentication links
+    if ($isLoggedIn) {
+        echo '<div class="mobile-user-section">';
+        echo '<a href="/dashboard" class="mobile-menu-item"><i class="fas fa-cog"></i> Dashboard</a>';
+        echo '<a href="/logout" class="mobile-menu-item"><i class="fas fa-sign-out-alt"></i> Logout</a>';
+        echo '</div>';
+    } else {
+        echo '<div class="mobile-auth-buttons">';
+        echo '<a class="mobile-menu-item" href="/login" id="mobileLoginBtn"><i class="fas fa-sign-in-alt"></i> Login</a>';
+        echo '</div>';
+    }
+    
+    echo '</div>';
+    echo '</nav>';
+
+    echo <<<JS
+    <script>
+        // Enhanced dropdown functionality
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('dropdownContent');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
-        
-        // Toggle menu on mobile
-        mobileMenuToggle.addEventListener("click", function() {
-            isMenuOpen = !isMenuOpen;
-            
-            if (isMenuOpen) {
-                mainMenu.style.display = "flex";
-                mainMenu.style.animation = "slideDown 0.3s ease forwards";
-                mobileMenuToggle.innerHTML = \'<i class="bi bi-x-lg"></i>\';
-            } else {
-                mainMenu.style.animation = "slideUp 0.3s ease forwards";
-                setTimeout(() => {
-                    mainMenu.style.display = "none";
-                }, 300);
-                mobileMenuToggle.innerHTML = \'<i class="bi bi-list"></i>\';
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#userDropdown')) {
+                const dropdown = document.getElementById('dropdownContent');
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
             }
         });
-        
-        // Reset menu state when returning to desktop view
-        window.addEventListener("resize", function() {
-            if (window.innerWidth > 768 && isMenuOpen) {
-                isMenuOpen = false;
-                mainMenu.style.animation = "";
-                mainMenu.style.display = "flex";
-                mobileMenuToggle.innerHTML = \'<i class="bi bi-list"></i>\';
-            }
-        });
-        // Close menu when clicking on a menu item (for mobile)
-        const menuItems = document.querySelectorAll(".menu");
-        menuItems.forEach(item => {
-            item.addEventListener("click", function() {
-                if (window.innerWidth <= 768) {
-                    isMenuOpen = false;
-                    mainMenu.style.animation = "slideUp 0.3s ease forwards";
-                    setTimeout(() => {
-                        mainMenu.style.display = "none";
-                    }, 300);
-                    mobileMenuToggle.innerHTML = \'<i class="bi bi-list"></i>\';
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    document.querySelectorAll('[data-navitem]').forEach(navItem => {
+                        navItem.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 }
             });
         });
+
+        // Navigation click animation
+        document.querySelectorAll('[data-navitem]').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.add('nav-click-animation');
+                setTimeout(() => {
+                    this.classList.remove('nav-click-animation');
+                }, 300);
+            });
+        });
+
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenuContainer = document.getElementById('mobileMenuContainer');
         
-        // Add animation styles dynamically
-        const style = document.createElement("style");
-        style.textContent = `
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-20px); }
-                to { opacity: 1; transform: translateY(0); }
+        if (mobileMenuToggle && mobileMenuContainer) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenuContainer.classList.toggle('open');
+                this.innerHTML = mobileMenuContainer.classList.contains('open') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+        }
+
+        // Mobile navigation scroll behavior
+        const mobileNav = document.getElementById('mobileNav');
+        let lastScrollTop = 0;
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                mobileNav.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                mobileNav.style.transform = 'translateY(0)';
             }
             
-            @keyframes slideUp {
-                from { opacity: 1; transform: translateY(0); }
-                to { opacity: 0; transform: translateY(-20px); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Initial check and listen for window resize
-        checkWindowSize();
-        window.addEventListener("resize", checkWindowSize);
-    });
-    </script>';
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Login button hover effect
+        const loginBtn = document.getElementById('loginBtn');
+        if (loginBtn) {
+            loginBtn.addEventListener('mouseenter', () => {
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+            });
+            loginBtn.addEventListener('mouseleave', () => {
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+            });
+        }
+    </script>
+JS;
 }
