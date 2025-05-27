@@ -1,5 +1,6 @@
 const text = "HI. I'm <span id='name'></span> ...";
 const speed = 100;
+const GITHUB_TOKEN = getenv("GITHUB_TOKEN");
 let i = 0;
 
 function typewriter() {
