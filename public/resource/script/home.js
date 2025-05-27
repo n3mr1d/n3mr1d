@@ -136,10 +136,9 @@ window.addEventListener('scroll', function () {
   }
 
 });
-fetch("https://api.github.com/graphql", {
+fetch("resource/api/github.php", {
   method: "POST",
   headers: {
-    "Authorization": "Bearer ",
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
