@@ -6,7 +6,7 @@
     },
     "routes": [
         { "src": "/resource/(.*)", "dest": "/public/resource/$1" },
-        { "src": "/font/fontawesome-free-6.7.2-web/(.*)", "dest": "/public/font/fontawesome-free-6.7.2-web/$1" },
+        { "src": "/font/(.*)", "dest": "/public/font/$1" },
         { "src": "/(.*)\\.css", "dest": "/public/resource/style/$1.css" },
         { "src": "/(.*)\\.js", "dest": "/public/resource/script/$1.js" },
         { "src": "/(.*)\\.(png|jpg|jpeg|gif|svg|ico)", "dest": "/public/resource/src/$1" },
