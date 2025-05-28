@@ -1,6 +1,5 @@
 const text = "HI. I'm <span id='name'></span> ...";
 const speed = 100;
-const GITHUB_TOKEN = getenv("GITHUB_TOKEN");
 let i = 0;
 
 function typewriter() {
@@ -119,7 +118,7 @@ fetch('resource/api/roles.php')
   .catch(error => {
     console.error("Terjadi kesalahan:", error);
     // Fallback roles jika fetch gagal
-    roles = ["Web Developer", "Cybersecurity Enthusiast"];
+    const roles = ["Web Developer", "App Developer", "Backend Developer", "Frontend Developer", "Penetration Tester"];
     typeLoop();
   });
 window.addEventListener('scroll', function () {
@@ -137,61 +136,9 @@ window.addEventListener('scroll', function () {
   }
 
 });
-fetch("https://api.github.com/graphql", {
-  method: "POST",
-  headers: {
-    "Authorization": "Bearer " + GITHUB_TOKEN,
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    query: `
-      query {
-        viewer {
-          login
-          name
-          url
-          avatarUrl
-          bio
-          repositories(first: 6, orderBy: {field: UPDATED_AT, direction: DESC}) {
-            totalCount
-            nodes {
-              name
-              description
-              url
-              stargazerCount
-              forkCount
-              primaryLanguage {
-                name
-                color
-              }
-              updatedAt
-            }
-          }
-          followers {
-            totalCount
-          }
-          following {
-            totalCount
-          }
-          contributionsCollection {
-            contributionCalendar {
-              totalContributions
-              weeks {
-                contributionDays {
-                  contributionCount
-                  date
-                  color
-                }
-              }
-            }
-          }
-        }
-      }
-    `
-  })
-})
-  .then(res => res.json())
-  .then(data => {
+fetch("resource/api/apigithub.php")
+.then(response => response.json())
+.then(data =>  {
     const user = data.data.viewer;
     const username = user.login;
     const avatarUrl = user.avatarUrl;
