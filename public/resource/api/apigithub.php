@@ -1,7 +1,6 @@
 <?php
 // Token akses GitHub kamu (ganti dengan token kamu sendiri)
-define("TOKEN_GITHUB", getenv("GITHUB_TOKEN"));
-
+require_once __DIR__ ."/public/config.php";
 // Query GraphQL
 function inigit(){
 $query = <<<GQL

@@ -1,14 +1,7 @@
 <?php 
 
 
-// config db
-define("DBHOST", getenv("DBHOST"));
-define("DBNAME", getenv("DBNAME"));
-define("DBPASS", getenv("DBPASS"));
-define("DBUSER", getenv("DBUSER"));
-$token = getenv("GITHUB_TOKEN");
-
-
+require_once __DIR__ . '/public/config.php';
 // define social media link
 define("github","https://github.com/n3mr1d");
 define("ig","https://www.instagram.com/eid3n_4/");
