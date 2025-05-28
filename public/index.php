@@ -1,7 +1,7 @@
 <?php 
 
 
-require_once __DIR__ . '/public/config.php';
+require_once __DIR__ . '/config.php';
 // define social media link
 define("github","https://github.com/n3mr1d");
 define("ig","https://www.instagram.com/eid3n_4/");
