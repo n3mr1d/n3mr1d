@@ -67,4 +67,4 @@ $response = curl_exec($ch);
 // Tutup koneksi cURL
 curl_close($ch);
 header('Content-Type: application/json');
-return $response;
+echo $response;
