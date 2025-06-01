@@ -61,10 +61,10 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['query' => $query]));
 
 // Eksekusi permintaan
-$response = curl_exec($ch);
+$api = curl_exec($ch);
 
 
 // Tutup koneksi cURL
 curl_close($ch);
 header('Content-Type: application/json');
-echo $response;
+echo $api;

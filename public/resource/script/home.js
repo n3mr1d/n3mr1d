@@ -107,8 +107,8 @@ fetch('resource/api/roles.php')
     }
     return response.json();
   })
-  .then(data => {
-    roles = data.roles.map(item => item.role);
+  .then(role => {
+    roles = role.roles.map(item => item.role);
     if (roles.length > 0) {
       typeLoop();
     } else {
@@ -137,8 +137,9 @@ window.addEventListener('scroll', function () {
 
 });
 fetch("resource/api/apigithub.php")
-.then(response => response.json())
+.then(api => api.text())
 .then(data =>  {
+  console.log("Raw response:", data);
     const user = data.data.viewer;
     const username = user.login;
     const avatarUrl = user.avatarUrl;
