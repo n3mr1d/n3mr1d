@@ -137,7 +137,7 @@ window.addEventListener('scroll', function () {
 
 });
 fetch("resource/api/apigithub.php")
-.then(api => api.text())
+.then(api => api.json())
 .then(data =>  {
   console.log("Raw response:", data);
     const user = data.data.viewer;
