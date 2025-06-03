@@ -1,5 +1,4 @@
 <?php
-// Token akses GitHub kamu (ganti dengan token kamu sendiri)
 require_once __DIR__ ."/../../config.php";
 
 $query = <<<GQL
@@ -47,24 +46,27 @@ $query = <<<GQL
 }
 GQL;
 
-// Inisialisasi cURL
-$ch = curl_init('https://api.github.com/graphql');
+$payload = json_encode(['query' => $query]);
 
-// Set opsi cURL
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . TOKEN_GITHUB,
-    'Content-Type: application/json',
-    'User-Agent: MyApp' // GitHub API memerlukan User-Agent
-]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['query' => $query]));
+// Header dengan token dan user-agent
+$headers = [
+    "Authorization: Bearer". TOKEN_GITHUB,
+    "Content-Type: application/json",
+    "User-Agent: MyApp"
+];
 
-// Eksekusi permintaan
-$api = curl_exec($ch);
+// Siapkan konteks HTTP
+$options = [
+    "http" => [
+        "method"  => "POST",
+        "header"  => implode("\r\n", $headers),
+        "content" => $payload,
+        "ignore_errors" => true 
+    ]
+];
 
+$context = stream_context_create($options);
 
-// Tutup koneksi cURL
-curl_close($ch);
-header('Content-Type: application/json');
+$api = file_get_contents('https://api.github.com/graphql', false, $context);
+
 echo $api;
