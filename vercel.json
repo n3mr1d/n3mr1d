@@ -40,6 +40,10 @@
     {
       "src": "/(.*)",
       "dest": "/api/index.php"
+    },
+    {
+      "src": "/uploads\\.(png|jpg|jpeg|gif|svg|ico)",
+      "dest": "/public/resource/uploads/$1"
     }
   ]
 }
