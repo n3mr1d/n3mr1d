@@ -39,7 +39,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/public/$1"
+      "dest": "/api/index.php"
     }
   ]
 }
