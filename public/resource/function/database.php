@@ -39,6 +39,7 @@ function createdb() {
     createat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(project_id) REFERENCES project(id))";
     $setting= "CREATE TABLE IF NOT EXISTS settings(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     value VARCHAR(50),
     settings VARCHAR(255)
     )";
