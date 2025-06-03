@@ -136,7 +136,7 @@ window.addEventListener('scroll', function () {
   }
 
 });
-fetch("/apigithub.php")
+fetch("resource/api/apigithub.php")
 .then(api => api.json())
 .then(data =>  {
   console.log("Raw response:", data);
