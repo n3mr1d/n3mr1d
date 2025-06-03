@@ -58,4 +58,6 @@ function route(){
             uploadskil($_POST['percentage'],$_POST['skill'],$_POST['svg_name']);
         }
     }
+
+    showhome();
 }

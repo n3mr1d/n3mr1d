@@ -31,18 +31,35 @@
     },
     {
       "src": "/logo/(.*)\\.(png|jpg|jpeg|gif|svg|ico)",
-      "dest": "/public/resource/src/logo/$1"
+      "dest": "/public/resource/src/logo/$1.$2"
     },
     {
       "src": "/src/(.*)\\.(png|jpg|jpeg|gif|svg|ico)",
-      "dest": "/public/resource/src/$1"
+      "dest": "/public/resource/src/$1.$2"
     },
     {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
   ],
-   "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+  "headers": [
+    {
+      "source": "/resource/(.*)",
+      "headers": [
+        { 
+          "key": "Cache-Control", 
+          "value": "public, max-age=31536000, immutable" 
+        }
       ]
+    },
+    {
+      "source": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico))",
+      "headers": [
+        { 
+          "key": "Cache-Control", 
+          "value": "public, max-age=31536000, immutable" 
+        }
+      ]
+    }
+  ]
 }
