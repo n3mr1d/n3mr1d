@@ -626,6 +626,9 @@ function showManage() {
     
     <section class="kontainer-table">
         ' . tableDonate() . '
+    </section>
+    <section class="kontainer-table">
+        ' . rolesform() . '
     </section>';
 }
 function addskillform() {

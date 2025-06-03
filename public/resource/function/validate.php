@@ -1,4 +1,4 @@
-322f<?php 
+<?php 
 
 
 // validatte php 
