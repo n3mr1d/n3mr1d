@@ -31,6 +31,7 @@ function route(){
     
     // route Login
     if(isset($_SESSION['user_id'])){
+        global $get;
         if($path == "/dashboard"){
             showManage();
         } else if($path == "/logout"){
@@ -39,6 +40,8 @@ function route(){
             showaddprojectform();
         } else if($get['action'] == 'edit'){
             editingpage($get['id']);
+        }else if($get['action']=="addroles"){
+            addroles($_POST['roles']);
         }
         
         if(isset($_POST['inputproject'])){

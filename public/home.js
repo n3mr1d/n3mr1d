@@ -100,7 +100,7 @@ function typeLoop() {
 }
 
 // Fetch roles dari server dan mulai animasi
-fetch('resource/api/roles.php')
+fetch('/api/roles.php')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -136,7 +136,7 @@ window.addEventListener('scroll', function () {
   }
 
 });
-fetch("/../api/apigithub.php")
+fetch("/api/apigithub.php")
 .then(api => api.json())
 .then(data =>  {
   console.log("Raw response:", data);

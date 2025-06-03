@@ -1,4 +1,4 @@
-<?php 
+322f<?php 
 
 
 // validatte php 
@@ -31,6 +31,23 @@ function fetchsertif(){
   $stmt->execute();
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $result;
+}
+function addroles(string $value):void{
+
+  global $db;
+  try{
+      $db->beginTransaction();
+  $sql = "INSERT INTO roles(role) VALUES(:role)";
+  $stmt= $db->prepare($sql);
+  $stmt->bindParam(":rile",$value);
+  $stmt->execute();
+                  $db->commit();
+    $_SESSION['error'] = "upload berhasil";
+      echo "<script>window.location.href = '/dashboard';</script>";
+}catch(PDOException $e){
+  $db->rollBack();
+  $_SESSION['error'] = "error upload $e";
+}
 }
 function addcertif($title, $source) {
     global $db;

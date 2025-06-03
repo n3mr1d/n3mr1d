@@ -202,7 +202,6 @@ HTML;
     jsallow('showproject');
     endhtml();
 }
-
 // Function to handle project submission
 function handleProjectSubmission() {
     global $db;
@@ -210,6 +209,11 @@ function handleProjectSubmission() {
     try {
         // Start transaction
         $db->beginTransaction();
+        
+        // Validate required fields
+        if (empty($_POST['title']) || empty($_POST['deskrip'])) {
+            throw new Exception("Title dan deskripsi harus diisi");
+        }
         
         // Insert project data
         $stmt = $db->prepare("INSERT INTO project (title, deskrip, github, demo, statuspo) VALUES (:title, :deskrip, :github, :demo, :statuspo)");
@@ -221,70 +225,118 @@ function handleProjectSubmission() {
         $stmt->execute();
         
         $projectId = $db->lastInsertId();
-    
+        
+        // Prepare tag statement once
+        $tagStmt = $db->prepare("INSERT INTO tag (tag, color, project_id) VALUES (:tag, :color, :project_id)");
+        
         // Process language tags
         if (!empty($_POST['language_tags'])) {
-            $tag = $_POST['language_tags'];
-            $color = '#3498db'; 
-            
-            $tagStmt = $db->prepare("INSERT INTO tag (tag, color, project_id) VALUES (:tag, :color, :project_id)");
-            $tagStmt->bindParam(':tag', $tag);
-            $tagStmt->bindParam(':color', $color);
-            $tagStmt->bindParam(':project_id', $projectId);
-            $tagStmt->execute();
+            $tags = is_array($_POST['language_tags']) ? $_POST['language_tags'] : [$_POST['language_tags']];
+            foreach ($tags as $tag) {
+                if (!empty(trim($tag))) {
+                    $tagStmt->execute([
+                        ':tag' => trim($tag),
+                        ':color' => '#3498db',
+                        ':project_id' => $projectId
+                    ]);
+                }
+            }
         }
         
         // Process framework tags
         if (!empty($_POST['framework_tags'])) {
-            $tag = $_POST['framework_tags'];
-            $color = '#f39c12'; 
-            
-            $tagStmt = $db->prepare("INSERT INTO tag (tag, color, project_id) VALUES (:tag, :color, :project_id)");
-            $tagStmt->bindParam(':tag', $tag);
-            $tagStmt->bindParam(':color', $color);
-            $tagStmt->bindParam(':project_id', $projectId);
-            $tagStmt->execute();
+            $tags = is_array($_POST['framework_tags']) ? $_POST['framework_tags'] : [$_POST['framework_tags']];
+            foreach ($tags as $tag) {
+                if (!empty(trim($tag))) {
+                    $tagStmt->execute([
+                        ':tag' => trim($tag),
+                        ':color' => '#f39c12',
+                        ':project_id' => $projectId
+                    ]);
+                }
+            }
         }
         
         // Process database tags
         if (!empty($_POST['database_tags'])) {
-            $tag = $_POST['database_tags'];
-            $color = '#e74c3c';
-            
-            $tagStmt = $db->prepare("INSERT INTO tag (tag, color, project_id) VALUES (:tag, :color, :project_id)");
-            $tagStmt->bindParam(':tag', $tag);
-            $tagStmt->bindParam(':color', $color);
-            $tagStmt->bindParam(':project_id', $projectId);
-            $tagStmt->execute();
-        }
-
-        // Process uploaded images
-        $uploadDir =__DIR__ . '/uploads/';
-      
-
-        $fileName = time() . '_' . basename($_FILES['imgup']['name']);
-        $targetFile = $uploadDir . $fileName;
-
-        if (move_uploaded_file($_FILES['imgup']['tmp_name'], $targetFile)) {
-
-
-            $relativePath = '/uploads/' . $fileName;
-            $imageStmt = $db->prepare("INSERT INTO image (project_id, path_image) VALUES (:project_id, :path_image)");
-            $imageStmt->bindParam(':project_id', $projectId);
-            $imageStmt->bindParam(':path_image', $relativePath);
-            $imageStmt->execute();
+            $tags = is_array($_POST['database_tags']) ? $_POST['database_tags'] : [$_POST['database_tags']];
+            foreach ($tags as $tag) {
+                if (!empty(trim($tag))) {
+                    $tagStmt->execute([
+                        ':tag' => trim($tag),
+                        ':color' => '#e74c3c',
+                        ':project_id' => $projectId
+                    ]);
+                }
+            }
         }
         
+        // Process uploaded images
+        if (isset($_FILES['imgup']) && $_FILES['imgup']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = __DIR__ . '/uploads/';
+            
+            // Create uploads directory if it doesn't exist
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            // Validate file type
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            $fileType = mime_content_type($_FILES['imgup']['tmp_name']);
+            
+            if (!in_array($fileType, $allowedTypes)) {
+                throw new Exception("Tipe file tidak diizinkan. Hanya JPG, PNG, GIF, dan WebP yang diperbolehkan.");
+            }
+            
+            // Validate file size (max 5MB)
+            if ($_FILES['imgup']['size'] > 5 * 1024 * 1024) {
+                throw new Exception("Ukuran file terlalu besar. Maksimal 5MB.");
+            }
+            
+            $fileExtension = pathinfo($_FILES['imgup']['name'], PATHINFO_EXTENSION);
+            $fileName = time() . '_' . uniqid() . '.' . $fileExtension;
+            $targetFile = $uploadDir . $fileName;
+            
+            if (move_uploaded_file($_FILES['imgup']['tmp_name'], $targetFile)) {
+                $relativePath = '/uploads/' . $fileName;
+                $imageStmt = $db->prepare("INSERT INTO image (project_id, path_image) VALUES (:project_id, :path_image)");
+                $imageStmt->execute([
+                    ':project_id' => $projectId,
+                    ':path_image' => $relativePath
+                ]);
+            } else {
+                throw new Exception("Gagal mengupload file gambar");
+            }
+        }
+        
+        // Commit transaction
         $db->commit();
-        $_SESSION['error'] = "Berhasil Memambahan project kedalam database";
-
-        // Redirect instead of using header
-        echo "<script>window.location.href = '/';</script>";
+        
+        // Set success message
+        $_SESSION['success'] = "Berhasil menambahkan project ke dalam database";
+        
+        // Redirect using JavaScript (Vercel compatible)
+        echo "<script>
+            window.location.href = '/';
+        </script>";
         exit;
+        
     } catch (Exception $e) {
         // Rollback transaction on error
-        $db->rollBack();
-         $_SESSION['error'] = "Error: " . $e->getMessage() ;
+        if ($db->inTransaction()) {
+            $db->rollBack();
+        }
+        
+        // Set error message
+        $_SESSION['error'] = "Error: " . $e->getMessage();
+        
+        // Redirect back with error message (Vercel compatible)
+        echo "<script>
+            sessionStorage.setItem('message', 'Error: " . addslashes($e->getMessage()) . "');
+            sessionStorage.setItem('messageType', 'error');
+            window.location.href = '" . ($_SERVER['HTTP_REFERER'] ?? '/') . "';
+        </script>";
+        exit;
     }
 }
 // function untukk melakkuan editing data pada project feature
@@ -558,7 +610,7 @@ function delcry($id){
     $db->commit();
     $_SESSION['error'] = "Berhasil Menghapus data $id";
     // Redirect using JavaScript instead of header
-    echo "<script>window.location.href = '/';</script>";
+    echo "<script>window.location.href = '/dashboard';</script>";
   } catch(Exception $e){
     $db->rollBack();
     echo "gagal menghapus ada kesalah PDOException: " . $e->getMessage();
@@ -584,3 +636,15 @@ function showformcertf(){
     </form>
   </div>';
 }
+function rolesform(): void{
+echo<<<HTML
+<div class="kkontainer-form">
+  <div class=form-group>
+    <input type="hidden" id="action" value="addroles">
+    <label for="roles">roles</label>
+    <input id="roles" type="text">
+  </div>
+  <button type="submit">submit</button>
+</div> 
+HTML;
+} 
