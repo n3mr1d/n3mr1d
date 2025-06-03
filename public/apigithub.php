@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ ."/public/config.php";
+require_once __DIR__ ."/config.php";
 
 $query = <<<GQL
 {
