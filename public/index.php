@@ -654,8 +654,3 @@ function addskillform() {
     </div>';
 }
 var_dump($_SESSION);
-GITHUB_TOKEN=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
-DBHOST=sql12.freesqldatabase.com
-DBNAME=sql12781459
-DBPASS=tH6t8gVHqt
-DBUSER=sql12781459
