@@ -1,12 +1,10 @@
 <?php
 // Koneksi ke MariaDB dengan PDO
-$host = "localhost";
-$user = "root";
-$pass = "180406";
-$dbname = "porto";
+
+require_once __DIR__ ."/../public/config.php";
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $conn = new PDO("mysql:host=".DBHOST.";port=".DBPORT.";dbname=".DBNAME ,DBUSER, DBPASS);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Query data

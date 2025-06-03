@@ -653,4 +653,3 @@ function addskillform() {
       </form>
     </div>';
 }
-var_dump($_SESSION);
