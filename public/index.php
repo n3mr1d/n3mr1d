@@ -322,8 +322,7 @@ HTML;
    echo '</div>
   </section>';
 
-  jsallow('home');
-  footerku();
+echo'<script src="home.js"></script>';  footerku();
   endhtml();
 }
   function project(){

@@ -68,5 +68,5 @@ $options = [
 $context = stream_context_create($options);
 
 $api = file_get_contents('https://api.github.com/graphql', false, $context);
-var_dump(TOKEN_GITHUB);
+
 echo $api;
