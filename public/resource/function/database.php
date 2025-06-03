@@ -1,7 +1,7 @@
 <?php
 // connection database
 try {
-    $db = new PDO("mysql:host=" . DBHOST . ";port=" . DBPORT .";;dbname=" . DBNAME, DBUSER, DBPASS);
+    $db = new PDO("mysql:host=" . DBHOST . ";port=" . DBPORT .";dbname=" . DBNAME, DBUSER, DBPASS);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
     die("FATAL ERROR: " . $e->getMessage());
