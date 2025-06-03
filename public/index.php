@@ -1,6 +1,5 @@
 <?php 
-
-
+session_start();
 require_once __DIR__ . '/config.php';
 // define social media link
 define("github","https://github.com/n3mr1d");
