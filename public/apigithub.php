@@ -50,7 +50,7 @@ $payload = json_encode(['query' => $query]);
 
 // Header dengan token dan user-agent
 $headers = [
-    "Authorization: Bearer". TOKEN_GITHUB,
+    "Authorization: Bearer ". TOKEN_GITHUB,
     "Content-Type: application/json",
     "User-Agent: MyApp"
 ];
@@ -68,5 +68,5 @@ $options = [
 $context = stream_context_create($options);
 
 $api = file_get_contents('https://api.github.com/graphql', false, $context);
-
+var_dump(TOKEN_GITHUB);
 echo $api;
