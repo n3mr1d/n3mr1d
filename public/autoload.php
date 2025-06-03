@@ -6,7 +6,6 @@
  * @param string $fun The name of the function file to load (without .php extension)
  * @return void
  */
-include_once __DIR__ . '/apigithub.php';
  function autoload(string $fun) {
     global $db, $error;
     $path = __DIR__ . '/resource/function/' . $fun . '.php';
