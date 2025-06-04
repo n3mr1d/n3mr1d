@@ -157,7 +157,7 @@ HTML;
                     <label for="progres">Project Status</label>
                     <select name="statuspo" id="progres">
                         <option value="ongoing">Ongoing</option>
-                        <option value="completed">Completed</option>
+                        <option value="complated">Completed</option>
                     </select>
                 </div>
                 
