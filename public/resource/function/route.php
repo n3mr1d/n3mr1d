@@ -1,65 +1,90 @@
 <?php
-function route(){
-    $path = $_SERVER['REQUEST_URI'];
-    
-    if(isset($_POST['username']) && isset($_POST['login'])){
-        validate($_POST['username'], $_POST['password']);
+
+function route() {
+    $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    // Handle register action (before ceckadmin, for first time setup)
+    if (isset($_POST['action']) && $_POST['action'] === "register") {
+        regisadmin($_POST['username'] ?? '', $_POST['password'] ?? '');
         return;
-    } else if(isset($_POST['username']) && isset($_POST['register'])){
-        if(isAdminsTableEmpty()){
-            registeradmin($_POST['username'],$_POST['password']);
-            loginform();
-            exit;
-        } else {
-            loginform();
-            return;
-        }
-    }
-    
-    $get = $_GET;
-    if(isAdminsTableEmpty()){
-        regis();
-    } else if($path == "/index.php" || $path == "/"){
-        showhome();
-    } else if($path == "/login"){
-        loginform();
-    } else if($path == "/donate"){
-        showdonate();
-    } else if($path == "/logout"){
-        logout();
-    }
-    
-    // route Login
-    if(isset($_SESSION['user_id'])){
-        global $get;
-        if($path == "/dashboard"){
-            showManage();
-        } else if($path == "/logout"){
-            logout();
-        } else if($path == "/add-project"){
-            showaddprojectform();
-        } else if($get['action'] == 'edit'){
-            editingpage($get['id']);
-        }else if($get['action']=="addroles"){
-            addroles($_POST['roles']);
-        }
-        
-        if(isset($_POST['inputproject'])){
-            handleProjectSubmission();
-            return;
-        } else if(isset($_POST['action']) && $_POST['action'] == 'delete'){
-            del($_POST['id']);
-        } else if(isset($_POST['action']) && $_POST['action'] == 'update'){
-            update($_POST['id']);
-        } else if(isset($_POST['action']) && $_POST['action'] == "addcry"){
-            addcry($_POST['name'],$_POST['address'],$_POST['icon']);
-        } else if(isset($_POST['action']) && $_POST['action'] == "delcry"){
-            delcry($_POST['id']);
-        }else if(isset($_POST['action']) && $_POST['action'] == "addcertif"){
-            addcertif($_POST['title'],$_POST['source']);
-        }else if(isset($_POST['action']) && $_POST['action'] == "addskill"){
-            uploadskil($_POST['percentage'],$_POST['skill'],$_POST['svg_name']);
-        }
     }
 
+    if (ceckadmin()) {
+        // Handle login action (before requiring user_id)
+        if (isset($_POST['action']) && $_POST['action'] === "login") {
+            loginout($_POST['username'] ?? '', $_POST['password'] ?? '');
+            return;
+        }
+
+        // Handle authenticated POST actions
+        if (
+            $method === 'POST' &&
+            isset($_POST['action']) &&
+            isset($_SESSION['user_id'])
+        ) {
+            $action = $_POST['action'];
+            switch ($action) {
+                case 'crypto':
+                    cryptoadd($_POST['name'] ?? '', $_POST['address'] ?? '', $_POST['icon'] ?? '');
+                    break;
+                case 'certif':
+                    addcertif($_POST['title'] ?? '', $_POST['imglink'] ?? '', $_POST['source'] ?? '');
+                    break;
+                case 'project':
+                    project($_POST['title'] ?? '', $_POST['demo'] ?? '', $_POST['repo'] ?? '', $_POST['imglink'] ?? '', $_POST['deskrip'] ?? '');
+                    break;
+                case 'skill':
+                    addskill($_POST['title'] ?? '', $_POST['icon'] ?? '', $_POST['persen'] ?? '');
+                    break;
+                case 'deleted':
+                    delete($_POST['table'] ?? '', $_POST['id'] ?? '');
+                    break;
+            }
+            return; // stop di sini setelah POST
+        }
+
+        // GET route
+        switch ($url) {
+            case '/':
+            case '/index.php':
+                homepage();
+                break;
+            case '/login':
+                showadmin();
+                break;
+            case '/donate':
+                donatepahe();
+                break;
+            case '/about':
+                showabout();
+                break;
+            case '/api/key':
+                require_once __DIR__ . '/api.php';
+                break;
+            case '/api/github':
+                $source = __DIR__;
+                $hey = dirname($source, 2);
+                require_once $hey . '/curlgithub.php';
+                break;
+            case '/dashboard':
+                dashboard();
+                break;
+            case '/logout':
+                // Log out user
+                session_unset();
+                session_destroy();
+                echo '<script>window.location.href="/login"</script>';
+                break;
+            default:
+                http_response_code(404);
+                echo "<h1>404 Not Found</h1>";
+                break;
+        }
+    } else {
+        // If no admin exists, show admin registration/init page
+        initadmin();
+    }
 }
+
+route();

@@ -1,130 +1,100 @@
 <?php
-// connection database
+// Define database constants
+define("DB_HOST", DBHOST);
+define("DB_NAME", DBNAME);
+define("DB_PASS", DBPASS);
+define("DB_PORT", DBPORT);
+define("DB_USER", DBUSER);
+
 try {
-    $db = new PDO("mysql:host=" . DBHOST . ";port=" . DBPORT .";dbname=" . DBNAME, DBUSER, DBPASS);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("FATAL ERROR: " . $e->getMessage());
+    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";port=" . DB_PORT;
+    $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    $sql = new PDO($dsn, DB_USER, DB_PASS, $options);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+    exit();
 }
 
-// create database function
-function createdb() {
-    global $db;
-    $sql1 = "CREATE TABLE IF NOT EXISTS project(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    deskrip VARCHAR(255) NOT NULL,
-    github VARCHAR(255) NOT NULL,
-    demo VARCHAR(255) NOT NULL,
-    statuspo ENUM('complated','ongoing') NOT NULL default 'ongoing',
-    uploadat TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
-    $crypto = "CREATE TABLE IF NOT EXISTS cry(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    addre VARCHAR(255) NOT NULL,
-    icon VARCHAR(255) NOT NULL DEFAULT 'fa-coins',
-    creatat TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
-    $sql2 = "CREATE TABLE IF NOT EXISTS image(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    project_id INT NOT NULL,
-    path_image VARCHAR(255),
-    createat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(project_id) REFERENCES project(id))";
+// Create tables
+$queries = [
+    "users" => "CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB",
+  "skill" => "CREATE TABLE IF NOT EXISTS skill (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(20) NOT NULL UNIQUE,
+        persentase INT NOT NULL,
+        icon VARCHAR(50) NOT NULL DEFAULT 'fa-arrows-to-dot',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
-    $sql3 = "CREATE TABLE IF NOT EXISTS tag(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    tag VARCHAR(50) NOT NULL,
-    color VARCHAR(10),
-    project_id INT NOT NULL,
-    createat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(project_id) REFERENCES project(id))";
-    $setting= "CREATE TABLE IF NOT EXISTS settings(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    value VARCHAR(50),
-    settings VARCHAR(255)
-    )";
-    $certification = "CREATE TABLE IF NOT EXISTS certification(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    path_image VARCHAR(255) NOT NULL,
-    source VARCHAR(255) NOT NULL,
-    createat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )";
-    $role = "CREATE TABLE IF NOT EXISTS roles
-    (
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    role VARCHAR(255),
-    creat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )";
-    $user =  "CREATE TABLE IF NOT EXISTS admins(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) unique,
-    password VARCHAR(255),
-    creat TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
-    $skill = "CREATE TABLE IF NOT EXISTS skill(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    skill VARCHAR(255),
-    percentage INT NOT NULL,
-    svg_name VARCHAR(255),
-    svg_content TEXT NOT NULL,
-    creat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )";
+    ) ENGINE=InnoDB",
+    "crypto" => "CREATE TABLE IF NOT EXISTS crypto (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(20) NOT NULL UNIQUE,
+        address LONGTEXT NOT NULL,
+        icon VARCHAR(50) NOT NULL DEFAULT 'fa-coins',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    ) ENGINE=InnoDB",
+
+    "certif" => "CREATE TABLE IF NOT EXISTS certif (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(50) NOT NULL,
+        imglink VARCHAR(255) NOT NULL,
+        source VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    ) ENGINE=InnoDB",
+"pro" => "CREATE TABLE IF NOT EXISTS pro (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(80) NOT NULL,
+        repo VARCHAR(255) DEFAULT NULL,
+        demo VARCHAR(255) DEFAULT NULL,
+        imglink VARCHAR(255) DEFAULT NULL,
+        deskrip TEXT DEFAULT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB",
+    
+    "language" => "CREATE TABLE IF NOT EXISTS language (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        project_id INT NOT NULL,
+        color VARCHAR(7) NOT NULL DEFAULT '#e74c3c',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (project_id) REFERENCES pro(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB",
+    
+    "framework" => "CREATE TABLE IF NOT EXISTS framework (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        project_id INT NOT NULL,
+        color VARCHAR(7) NOT NULL DEFAULT '#f39c12 ',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (project_id) REFERENCES pro(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB",
+    
+    "data" => "CREATE TABLE IF NOT EXISTS data (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        project_id INT NOT NULL,
+        color VARCHAR(7) NOT NULL DEFAULT '#3498db',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (project_id) REFERENCES pro(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB"
+];
+
+foreach ($queries as $table => $query) {
     try {
-        $db->exec($sql1);
-        $db->exec($sql2);
-        $db->exec($sql3);
-        $db->exec($setting);
-        $db->exec($role);
-        $db->exec($user);
-        $db->exec($crypto);
-        $db->exec($certification);
-        $db->exec($skill);
-    } catch(PDOException $e) {
-        die("Database creation error: " . $e->getMessage());
+        $sql->exec($query);
+    } catch (PDOException $e) {
+        echo "Error creating table $table: " . $e->getMessage() . "\n";
     }
 }
-createdb();
 
-// function cron untuk menghapus file apabila sudah tidak ada
-
-function cron() {
-    global $db;
-    $uploadsDir = __DIR__ . '/uploads/';
-    if (!is_dir($uploadsDir)) {
-        // Folder uploads tidak ada, tidak perlu melakukan apa-apa
-        return;
-    }
-
-    // Ambil semua path_image dari tabel image dan certification
-    $dbFiles = [];
-
-    // Ambil path_image dari tabel image
-    $stmt1 = $db->query("SELECT path_image FROM image");
-    while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-        if (!empty($row['path_image'])) {
-            $dbFiles[] = basename($row['path_image']);
-        }
-    }
-
-    // Ambil path_image dari tabel certification
-    $stmt2 = $db->query("SELECT path_image FROM certification");
-    while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-        if (!empty($row['path_image'])) {
-            $dbFiles[] = basename($row['path_image']);
-        }
-    }
-
-    // Scan semua file di folder uploads
-    $files = scandir($uploadsDir);
-    foreach ($files as $file) {
-        if ($file === '.' || $file === '..') continue;
-        // Hanya hapus file yang tidak ada di database
-        if (!in_array($file, $dbFiles)) {
-            $filePath = $uploadsDir . $file;
-            if (is_file($filePath)) {
-                @unlink($filePath);
-            }
-        }
-    }
-}
-cron();

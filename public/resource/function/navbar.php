@@ -1,10 +1,7 @@
 <?php
 
 function navbar() {
-    global $db;
-    $currentPath = $_SERVER["REQUEST_URI"];
-    
-    // Define menu items with their properties
+
     $menuItems = [
         'Home'=>[
             'label'=>'Home',
@@ -15,7 +12,7 @@ function navbar() {
         'About' => [
             'label' => 'About', 
             'class' => 'iniclasicon', 
-            'link' => 'index.php#uwu',
+            'link' => '/about',
             'icon' => 'fa-user'
         ],
         'Project' => [
@@ -38,7 +35,7 @@ function navbar() {
     echo '<nav class="desktop-nav normal" id="desktop-nav">';
     echo '<div class="kontainer-nav">';
     echo '<a href="/" class="logo-container">';
-    echo '<div class="logo-kontainer"><img class="imglogo" src="resource/src/logo/logo.svg"><span class="titlelogo">N3mr1d.dev</span></div>';
+    echo '<div class="logo-kontainer"><img class="imglogo" src="resource/src/logo/logo.svg" width="10%"><span class="titlelogo">N3mr1d.dev</span></div>';
     echo '</a>';
     echo '</div>';
     
@@ -46,18 +43,9 @@ function navbar() {
     
     // Generate menu items
     foreach ($menuItems as $menu => $details) {
-        $name = explode('/', $currentPath);
-        $links = explode('/', $details['link']);
-        $activeClass = '';
-        
-        // Fix active class logic
-        if (!empty($name[1]) && !empty($links[1]) && $name[1] === $links[1]) {
-            $activeClass = 'active';
-        } elseif ($details['link'] === '/index.php' && ($currentPath === '/' || $currentPath === '/index.php')) {
-            $activeClass = 'active';
-        }
-        
-        echo '<a class="' . $details['class'] . ' ' . $activeClass . '" href="' . $details['link'] . '" data-navitem="' . strtolower($menu) . '">';
+        $isActive = (strpos($_SERVER['REQUEST_URI'], $details['link']) !== false && $details['link'] !== '/') ? 'active' : '';
+
+        echo '<a  class="'.$isActive.'"href="' . $details['link'] . '" data-navitem="' . strtolower($menu) . '">';
         echo '<i class="fas ' . $details['icon'] . '"></i> ';
         echo $details['label'];
         echo '</a>';
@@ -86,17 +74,12 @@ function navbar() {
     // Mobile navigation
     echo '<nav class="mobile-nav" id="mobileNav">';
     echo '<div class="mobile-menu-container" id="mobileMenuContainer">';
-    
+    $isActive = (strpos($_SERVER['REQUEST_URI'], $details['link']) !== false && $details['link'] !== '/') ? 'active' : '';
+
     // Mobile menu items
     foreach ($menuItems as $menu => $details) {
-        $activeClass = '';
-        if (!empty($name[1]) && !empty($links[1]) && $name[1] === $links[1]) {
-            $activeClass = 'active';
-        } elseif ($details['link'] === '/index.php' && ($currentPath === '/' || $currentPath === '/index.php')) {
-            $activeClass = 'active';
-        }
-        
-        echo '<a class="mobile-menu-item ' . $activeClass . '" href="' . $details['link'] . '" data-navitem="' . strtolower($menu) . '">';
+    
+        echo '<a class="mobile-menu-item '. $isActive .' " href="' . $details['link'] . '" data-navitem="' . strtolower($menu) . '">';
         echo '<i class="fas ' . $details['icon'] . '"></i> ';
         echo $details['label'];
         echo '</a>';
@@ -169,13 +152,7 @@ function navbar() {
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenuContainer = document.getElementById('mobileMenuContainer');
         
-        if (mobileMenuToggle && mobileMenuContainer) {
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenuContainer.classList.toggle('open');
-                this.innerHTML = mobileMenuContainer.classList.contains('open') ? 
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-        }
+      
 
         // Mobile navigation scroll behavior
         const mobileNav = document.getElementById('mobileNav');
@@ -195,16 +172,7 @@ function navbar() {
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
 
-        // Login button hover effect
-        const loginBtn = document.getElementById('loginBtn');
-        if (loginBtn) {
-            loginBtn.addEventListener('mouseenter', () => {
-                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
-            });
-            loginBtn.addEventListener('mouseleave', () => {
-                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
-            });
-        }
+       
     </script>
 JS;
 }
