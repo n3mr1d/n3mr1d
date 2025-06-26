@@ -6,10 +6,6 @@
   },
   "routes": [
     {
-      "src": "/api/(.*)\\.php",
-      "dest": "/api/$1.php"
-    },
-    {
       "src": "/resource/(.*)",
       "dest": "/public/resource/$1"
     },
@@ -19,7 +15,7 @@
     },
     {
       "src": "/webfonts/(.*)",
-      "dest": "/public/font/fontawesome-free-6.7.2-web/webfonts/$1"
+      "dest": "/public/resource/fontawesome-pro_v6.7.2_web/webfonts/$1"
     },
     {
       "src": "/(.*)\\.css",
@@ -27,7 +23,7 @@
     },
     {
       "src": "/(.*)\\.js",
-      "dest": "/public/resource/script/$1.js"
+      "dest": "/public/resource/js/$1.js"
     },
     {
       "src": "/logo/(.*)\\.(png|jpg|jpeg|gif|svg|ico)",
@@ -40,10 +36,6 @@
     {
       "src": "/(.*)",
       "dest": "/api/index.php"
-    },
-    {
-      "src": "/uploads\\.(png|jpg|jpeg|gif|svg|ico)",
-      "dest": "/public/resource/uploads/$1"
     }
   ]
 }
