@@ -20,7 +20,7 @@ function loginout(string $username, string $password)
     if (trim($username) === '' || trim($password) === '') {
         $_SESSION['errors'] = "Username dan password tidak boleh kosong";
         // echo '<script>window.location.href="/login"</script>';
-        header("Location:/dashboard");
+        header("Location:/login");
         exit();
     }
 
@@ -35,7 +35,8 @@ function loginout(string $username, string $password)
             $_SESSION['user_id'] = $result['username'];
             // Optional: unset error jika sebelumnya ada
             unset($_SESSION['errors']);
-            echo '<script>window.location.href="/dashboard"</script>';
+            header("Location:/dashboard");
+
             exit();
         } else {
             $_SESSION['errors'] = "Password atau username salah";
