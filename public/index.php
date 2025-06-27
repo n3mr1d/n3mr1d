@@ -10,10 +10,7 @@ require __DIR__ . "/autoload.php";
 // function component html page
 function print_start(string $title): void {
     $title = ucfirst($title);
-    // Mulai session jika belum dimulai
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+
     echo <<<HTML
 <!DOCTYPE html>
 <html lang="en">

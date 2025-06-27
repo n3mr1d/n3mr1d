@@ -17,9 +17,6 @@ function ceckadmin(){
 function loginout(string $username, string $password)
 {
     global $sql;
-
-
-    // Validasi input
     if (trim($username) === '' || trim($password) === '') {
         $_SESSION['errors'] = "Username dan password tidak boleh kosong";
         echo '<script>window.location.href="/login"</script>';
