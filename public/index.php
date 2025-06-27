@@ -1,6 +1,8 @@
 <?php
-    session_start();
-
+   // Mulai session jika belum dimulai
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 // auto load file 
 require __DIR__ . "/config.php";
 require __DIR__ . "/autoload.php";
