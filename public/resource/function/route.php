@@ -20,11 +20,7 @@ function route() {
         // Jika user sudah login dan akses dashboard
         dashboard();
         return;
-    } else if (
-        $method === 'POST' &&
-        isset($_POST['action']) &&
-        isset($_SESSION['user_id'])
-    ) {
+    } else if (isset($_POST['action'])) {
         $action = $_POST['action'];
         if ($action === 'crypto') {
             cryptoadd($_POST['name'] ?? '', $_POST['address'] ?? '', $_POST['icon'] ?? '');
