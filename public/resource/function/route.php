@@ -31,11 +31,7 @@ function route() {
     }
 
     // Handle POST action yang membutuhkan autentikasi
-    if (
-        $method === 'POST' &&
-        isset($_POST['action']) &&
-        isset($_SESSION['user_id'])
-    ) {
+    if (isset($_POST['action'])) {
         $action = $_POST['action'];
         switch ($action) {
             case 'crypto':
