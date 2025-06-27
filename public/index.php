@@ -613,11 +613,11 @@ function homepage(){
     </div>
     <div class="dot-wrap">
         <span class="dot-color framework-color"></span>
-        <div class="label">Framework</div>
+        <div class="label">Database</div>
     </div>
     <div class="dot-wrap">
         <span class="dot-color data-color"></span>
-        <div class="label">Database</div>
+        <div class="label">Framework</div>
     </div>
 </div>
 
