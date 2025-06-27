@@ -198,7 +198,7 @@ try{
 }
 
 // functiion deleted 
-function delete($table,$id){
+function deletedtable($table,$id){
     global $sql;
 try{
 $stmt = $sql->prepare("DELETE  FROM $table where id = :id");

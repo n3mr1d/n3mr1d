@@ -31,7 +31,7 @@ function route() {
         } else if ($action === 'skill') {
             addskill($_POST['title'] ?? '', $_POST['icon'] ?? '', $_POST['persen'] ?? '');
         } else if ($action === 'deleted') {
-            delete($_POST['table'] ?? '', $_POST['id'] ?? '');
+            deletedtable($_POST['table'] ?? '', $_POST['id'] ?? '');
         }
         return;
     } else {
