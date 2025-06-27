@@ -18,10 +18,6 @@ function loginout(string $username, string $password)
 {
     global $sql;
 
-    // Mulai session jika belum dimulai
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
 
     // Validasi input
     if (trim($username) === '' || trim($password) === '') {
