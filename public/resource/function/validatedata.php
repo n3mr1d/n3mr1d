@@ -31,6 +31,7 @@ function loginout(string $username, string $password)
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result && password_verify($password, $result['password'])) {
+            session_start();
             $_SESSION['user_id'] = $result['id'];
             echo '<script>window.location.href="/dashboard"</script>';
             exit();
