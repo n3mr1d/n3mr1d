@@ -34,8 +34,12 @@
       "dest": "/public/resource/src/$1"
     },
     {
+      "src": "/api/(.*)",
+      "dest": "/public/resource/function/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "dest": "/public/resource/function/route.php"
     }
   ]
 }
