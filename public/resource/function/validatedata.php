@@ -19,7 +19,8 @@ function loginout(string $username, string $password)
     global $sql;
     if (trim($username) === '' || trim($password) === '') {
         $_SESSION['errors'] = "Username dan password tidak boleh kosong";
-        echo '<script>window.location.href="/login"</script>';
+        // echo '<script>window.location.href="/login"</script>';
+        header("Location:/dashboard");
         exit();
     }
 
