@@ -40,12 +40,12 @@ function loginout(string $username, string $password)
             exit();
         } else {
             $_SESSION['errors'] = "Password atau username salah";
-            echo '<script>window.location.href="/login"</script>';
+            header("Location:/login");
             exit();
         }
     } catch (Exception $e) {
         $_SESSION['errors'] = "Terjadi kesalahan, silakan coba lagi";
-        echo '<script>window.location.href="/login"</script>';
+        header("Location:/login");
         exit();
     }
 }
@@ -61,11 +61,11 @@ function  cryptoadd($name,$address,$icon){
         $stmt->bindParam(":icon",$icon);
         if($stmt->execute()){
             $_SESSION['success']="success add coin to database";
-            echo'<script>window.location.href="/dashboard"</script>';
+            header("Location:/dashboard");
 exit();
         }else{
             $_SESSION['error'] = "ERROR add coin to databases";
-            echo'<script>window.location.href="/dashboard"</script>';
+            header("Location:/dashboard");
 
             exit();
         }
@@ -91,19 +91,19 @@ try{
     $stmt->bindParam(":source",$source);
    if($stmt->execute()){
     $_SESSION['success']="success add certif title : $title to database ";
-    echo'<script>window.location.href="/dashboard"</script>';
+    header("Location:/dashboard");
 
     exit();
 
    }else{
     $_SESSION['errors']="Failed add certif to database";
-    echo'<script>window.location.href="/dashboard"</script>';
+    header("Location:/dashboard");
 
     exit();
    }
 }catch(PDOException $e){
       $_SESSION['errors']="Failed add certif to database $e";
-      echo'<script>window.location.href="/dashboard"</script>';
+      header("Location:/dashboard");
 
     exit();
 }
@@ -164,17 +164,17 @@ function project(string $title, string $demo, string $repo, string $imglink,stri
             }
 
             $_SESSION['success'] = 'Success Add project to database title: ' . $title;
-            echo'<script>window.location.href="/dashboard"</script>';
+            header("Location:/dashboard");
 
         } else {
             $_SESSION['errors'] = 'Failed to add project to database';
-            echo'<script>window.location.href="/dashboard"</script>';
+            header("Location:/dashboard");
 
         }
 
     } catch (PDOException $e) {
         $_SESSION['errors'] = 'Database error: ' . $e->getMessage();
-        echo'<script>window.location.href="/dashboard"</script>';
+        header("Location:/dashboard");
 
     }
 }
@@ -185,15 +185,15 @@ try{
     $stmt = $sql->prepare("INSERT INTO skill(title,persentase,icon) VALUES(?, ?, ? )");
    if($stmt->execute([$name,$persen,$icon])){
     $_SESSION['success']= "success add skill $name to database";
-    echo'<script>window.location.href="/dashboard"</script>';
-    }else{
+    header("Location:/dashboard");
+}else{
         $_SESSION['errors'] = "failed";
-        echo'<script>window.location.href="/dashboard"</script>';
+        header("Location:/dashboard");
 
     }
    }catch(PDOException $e){
     $_SESSION['errors'] = "failed $e";
-    echo'<script>window.location.href="/dashboard"</script>';
+    header("Location:/dashboard");
 
     
     }
@@ -207,17 +207,17 @@ $stmt = $sql->prepare("DELETE  FROM $table where id = :id");
 $stmt->bindParam(":id",$id);
 if($stmt->execute()){
 $_SESSION['success']= "deleted $id success";
-echo'<script>window.location.href="/dashboard"</script>';
+header("Location:/dashboard");
 
 }else{
    $_SESSION['errors']= "deleted $id failed";
-   echo'<script>window.location.href="/dashboard"</script>';
+   header("Location:/dashboard");
 
 
 }
 }catch(PDOException $e){
    $_SESSION['errors']= "error : $e ";
-   echo'<script>window.location.href="/dashboard"</script>';
+   header("Location:/dashboard");
 
 }
 }
@@ -227,10 +227,10 @@ function regisadmin($username,$password){
     $query = "INSERT INTO users(username,password) VALUES(?,?)";
     $stmt= $sql->prepare($query);
     if($stmt->execute([$username,$resault])){
-        echo'<script>window.location.href = "/"</script>';
+        header("Location:/");
     }else{
         $_SESSION['errors']= "Register failed";
-        echo'<script>window.location.href="/dashboard"</script>';
+        header("Location:/");
 
     }
     
