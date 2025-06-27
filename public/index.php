@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
 // auto load file 
 require __DIR__ . "/config.php";

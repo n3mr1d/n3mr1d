@@ -1,10 +1,7 @@
 <?php
 
 function route() {
-    // Mulai session jika belum dimulai
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+ 
 
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $method = $_SERVER['REQUEST_METHOD'];
