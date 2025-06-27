@@ -1,25 +1,19 @@
 <?php
-// function ceck admin
-function ceckadmin(){
+// Cek apakah sudah ada admin di tabel users
+function ceckadmin() {
     global $sql;
-    $querry  = "SELECT * FROM users";
-    $stmt = $sql->prepare($querry);
+    $query = "SELECT COUNT(*) FROM users";
+    $stmt = $sql->prepare($query);
     $stmt->execute();
-    $resualt = $stmt->fetchAll();
-    if($resualt==null){
-        return false;
-    }else{
-        return true;
-    }
+    $count = $stmt->fetchColumn();
+    return $count > 0;
 }
 
-// logic login check database
-function loginout(string $username, string $password)
-{
+// Login logic: cek username dan password
+function loginout(string $username, string $password) {
     global $sql;
     if (trim($username) === '' || trim($password) === '') {
         $_SESSION['errors'] = "Username dan password tidak boleh kosong";
-        // echo '<script>window.location.href="/login"</script>';
         header("Location:/login");
         exit();
     }
@@ -33,10 +27,8 @@ function loginout(string $username, string $password)
 
         if ($result && isset($result['password']) && password_verify($password, $result['password'])) {
             $_SESSION['user_id'] = $result['username'];
-            // Optional: unset error jika sebelumnya ada
             unset($_SESSION['errors']);
             header("Location:/dashboard");
-
             exit();
         } else {
             $_SESSION['errors'] = "Password atau username salah";
@@ -50,82 +42,66 @@ function loginout(string $username, string $password)
     }
 }
 
-// logic input add crypto tto database
-
-function  cryptoadd($name,$address,$icon){
-    global $sql ;
-    try{
-        $stmt = $sql->prepare("INSERT INTO crypto(name,address,icon) VALUE (:name, :add, :icon)");
-        $stmt->bindParam(":name",$name);
-        $stmt->bindParam(":add",$address);
-        $stmt->bindParam(":icon",$icon);
-        if($stmt->execute()){
-            $_SESSION['success']="success add coin to database";
+// Tambah data crypto ke database
+function cryptoadd($name, $address, $icon) {
+    global $sql;
+    try {
+        $stmt = $sql->prepare("INSERT INTO crypto(name, address, icon) VALUES (:name, :address, :icon)");
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":address", $address);
+        $stmt->bindParam(":icon", $icon);
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Berhasil menambah coin ke database";
             header("Location:/dashboard");
-exit();
-        }else{
-            $_SESSION['error'] = "ERROR add coin to databases";
+            exit();
+        } else {
+            $_SESSION['errors'] = "Gagal menambah coin ke database";
             header("Location:/dashboard");
-
             exit();
         }
-
-    }catch(Exception $e){
-        echo "error message" . $e->getMessage();
-       ;
-                    exit();
-
-
+    } catch (Exception $e) {
+        $_SESSION['errors'] = "Terjadi error: " . $e->getMessage();
+        header("Location:/dashboard");
+        exit();
     }
 }
 
-//logic input certification
-
+// Tambah sertifikat ke database
 function addcertif($title, $imglink, $source) {
     global $sql;
-try{
-    $query = "INSERT INTO certif(title,imglink,source) VALUES(:title, :imglink, :source)";
-    $stmt = $sql->prepare($query);
-    $stmt->bindParam(":title",$title);
-    $stmt->bindParam(":imglink",$imglink);
-    $stmt->bindParam(":source",$source);
-   if($stmt->execute()){
-    $_SESSION['success']="success add certif title : $title to database ";
-    header("Location:/dashboard");
-
-    exit();
-
-   }else{
-    $_SESSION['errors']="Failed add certif to database";
-    header("Location:/dashboard");
-
-    exit();
-   }
-}catch(PDOException $e){
-      $_SESSION['errors']="Failed add certif to database $e";
-      header("Location:/dashboard");
-
-    exit();
-}
-
-}
-
-
-// logic project and tag
-
-function project(string $title, string $demo, string $repo, string $imglink,string $deskrip)
-{
-    global $sql;
-
     try {
-        // Insert project
-        $query = "INSERT INTO pro (title, repo, demo, imglink,deskrip) VALUES (:title, :repo, :demo, :imglink,:deskrip)";
+        $query = "INSERT INTO certif(title, imglink, source) VALUES(:title, :imglink, :source)";
+        $stmt = $sql->prepare($query);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":imglink", $imglink);
+        $stmt->bindParam(":source", $source);
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Berhasil menambah sertifikat: $title ke database";
+            header("Location:/dashboard");
+            exit();
+        } else {
+            $_SESSION['errors'] = "Gagal menambah sertifikat ke database";
+            header("Location:/dashboard");
+            exit();
+        }
+    } catch (PDOException $e) {
+        $_SESSION['errors'] = "Gagal menambah sertifikat ke database: " . $e->getMessage();
+        header("Location:/dashboard");
+        exit();
+    }
+}
+
+// Tambah project dan tag ke database
+function project(string $title, string $demo, string $repo, string $imglink, string $deskrip) {
+    global $sql;
+    try {
+        $query = "INSERT INTO pro (title, repo, demo, imglink, deskrip) VALUES (:title, :repo, :demo, :imglink, :deskrip)";
         $stmt = $sql->prepare($query);
         $stmt->bindParam(":title", $title);
         $stmt->bindParam(":repo", $repo);
         $stmt->bindParam(":demo", $demo);
-        $stmt->bindParam(":deskrip",$deskrip);
         $stmt->bindParam(":imglink", $imglink);
+        $stmt->bindParam(":deskrip", $deskrip);
 
         if ($stmt->execute()) {
             $project_id = $sql->lastInsertId();
@@ -133,12 +109,9 @@ function project(string $title, string $demo, string $repo, string $imglink,stri
             // Tag insert logic
             if (isset($_POST['tag']) && is_array($_POST['tag'])) {
                 $tags = $_POST['tag'];
-
                 foreach ($tags as $key => $value) {
                     $raw = is_array($value) ? ($value[0] ?? '') : $value;
-
                     if (empty($raw)) continue;
-
                     $items = explode(',', $raw);
 
                     // Tentukan tabel tujuan
@@ -153,7 +126,6 @@ function project(string $title, string $demo, string $repo, string $imglink,stri
                     }
 
                     $stmtTag = $sql->prepare("INSERT INTO $table (name, project_id) VALUES (?, ?)");
-
                     foreach ($items as $item) {
                         $item = trim($item);
                         if (!empty($item)) {
@@ -163,75 +135,88 @@ function project(string $title, string $demo, string $repo, string $imglink,stri
                 }
             }
 
-            $_SESSION['success'] = 'Success Add project to database title: ' . $title;
+            $_SESSION['success'] = 'Berhasil menambah project ke database: ' . $title;
             header("Location:/dashboard");
-
+            exit();
         } else {
-            $_SESSION['errors'] = 'Failed to add project to database';
+            $_SESSION['errors'] = 'Gagal menambah project ke database';
             header("Location:/dashboard");
-
+            exit();
         }
-
     } catch (PDOException $e) {
         $_SESSION['errors'] = 'Database error: ' . $e->getMessage();
         header("Location:/dashboard");
-
+        exit();
     }
 }
-// function add skil into database 
-function addskill($name,$icon,$persen){
+
+// Tambah skill ke database
+function addskill($name, $icon, $persen) {
     global $sql;
-try{
-    $stmt = $sql->prepare("INSERT INTO skill(title,persentase,icon) VALUES(?, ?, ? )");
-   if($stmt->execute([$name,$persen,$icon])){
-    $_SESSION['success']= "success add skill $name to database";
-    header("Location:/dashboard");
-}else{
-        $_SESSION['errors'] = "failed";
+    try {
+        $stmt = $sql->prepare("INSERT INTO skill(title, persentase, icon) VALUES(?, ?, ?)");
+        if ($stmt->execute([$name, $persen, $icon])) {
+            $_SESSION['success'] = "Berhasil menambah skill $name ke database";
+            header("Location:/dashboard");
+            exit();
+        } else {
+            $_SESSION['errors'] = "Gagal menambah skill";
+            header("Location:/dashboard");
+            exit();
+        }
+    } catch (PDOException $e) {
+        $_SESSION['errors'] = "Gagal menambah skill: " . $e->getMessage();
         header("Location:/dashboard");
-
-    }
-   }catch(PDOException $e){
-    $_SESSION['errors'] = "failed $e";
-    header("Location:/dashboard");
-
-    
+        exit();
     }
 }
 
-// functiion deleted 
-function deletedtable($table,$id){
+// Hapus data dari tabel tertentu berdasarkan id
+function deletedtable($table, $id) {
     global $sql;
-try{
-$stmt = $sql->prepare("DELETE  FROM $table where id = :id");
-$stmt->bindParam(":id",$id);
-if($stmt->execute()){
-$_SESSION['success']= "deleted $id success";
-header("Location:/dashboard");
-
-}else{
-   $_SESSION['errors']= "deleted $id failed";
-   header("Location:/dashboard");
-
-
-}
-}catch(PDOException $e){
-   $_SESSION['errors']= "error : $e ";
-   header("Location:/dashboard");
-
-}
-}
-function regisadmin($username,$password){
-    global $sql;
-    $resault = password_hash($password,PASSWORD_DEFAULT);
-    $query = "INSERT INTO users(username,password) VALUES(?,?)";
-    $stmt= $sql->prepare($query);
-    if($stmt->execute([$username,$resault])){
-        header("Location:/");
-    }else{
-        $_SESSION['errors']= "Register failed";
-        header("Location:/");
-
+    try {
+        // Validasi nama tabel agar tidak bisa di-inject
+        $allowedTables = ['crypto', 'certif', 'pro', 'framework', 'data', 'language', 'skill', 'users'];
+        if (!in_array($table, $allowedTables)) {
+            $_SESSION['errors'] = "Tabel tidak valid";
+            header("Location:/dashboard");
+            exit();
+        }
+        $stmt = $sql->prepare("DELETE FROM $table WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Berhasil menghapus data id $id";
+            header("Location:/dashboard");
+            exit();
+        } else {
+            $_SESSION['errors'] = "Gagal menghapus data id $id";
+            header("Location:/dashboard");
+            exit();
+        }
+    } catch (PDOException $e) {
+        $_SESSION['errors'] = "Error: " . $e->getMessage();
+        header("Location:/dashboard");
+        exit();
     }
-    
+}
+
+// Registrasi admin baru
+function regisadmin($username, $password) {
+    global $sql;
+    if (trim($username) === '' || trim($password) === '') {
+        $_SESSION['errors'] = "Username dan password tidak boleh kosong";
+        header("Location:/");
+        exit();
+    }
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $query = "INSERT INTO users(username, password) VALUES(?, ?)";
+    $stmt = $sql->prepare($query);
+    if ($stmt->execute([$username, $hash])) {
+        header("Location:/");
+        exit();
+    } else {
+        $_SESSION['errors'] = "Register gagal";
+        header("Location:/");
+        exit();
+    }
 }
