@@ -68,11 +68,18 @@ function route() {
                 require_once $hey . '/curlgithub.php';
                 break;
             case '/dashboard':
-                if (!isset($_SESSION['user_id'])) {
-                    echo '<script>window.location.href="/login"</script>';
-                    exit;
+                // Cek apakah user sudah login
+                if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+                    // Jika belum login, redirect ke halaman login
+                    // Hindari infinite redirect loop jika sudah di /login
+                    if ($url !== '/login') {
+                        echo '<script>window.location.href="/login"</script>';
+                        exit();
+                    }
+                } else {
+                    // Jika sudah login, tampilkan dashboard
+                    dashboard();
                 }
-                dashboard();
                 break;
             case '/logout':
                 // Log out user
