@@ -1,15 +1,15 @@
 <?php
 // define social media link
-// define("DBHOST", getenv("DBHOST"));
-// define("DBNAME", getenv("DBNAME"));
-// define("DBUSER", getenv("DBUSER"));
-// define("DBPASS", getenv("DBPASS"));
-// define("DBPORT", getenv("DBPORT"));
-define("DBHOST","localhost");
-define("DBNAME","testing");
-define("DBUSER","root");
-define("DBPASS","180406");
-define("DBPORT","3364");
+define("DBHOST", getenv("DBHOST"));
+define("DBNAME", getenv("DBNAME"));
+define("DBUSER", getenv("DBUSER"));
+define("DBPASS", getenv("DBPASS"));
+define("DBPORT", getenv("DBPORT"));
+// define("DBHOST","localhost");
+// define("DBNAME","testing");
+// define("DBUSER","root");
+// define("DBPASS","180406");
+// define("DBPORT","3364");
 define("GITHUBTOKEN", getenv("GITHUB_TOKEN"));
 define("GITHUB", "https://github.com/n3mr1d");
 define("IG", "https://www.instagram.com/eid3n_4/");

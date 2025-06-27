@@ -22,7 +22,6 @@ function print_start(string $title): void {
     <title>Nemraid - {$title}</title>
     <link rel="stylesheet" href="resource/css/global.css">
     <link rel="icon" href="resource/src/logo/logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="resource/fontawesome-pro_v6.7.2_web/css/all.css">
 </head>
 <body>
 HTML;
@@ -36,7 +35,7 @@ function print_end(): void {
     $year = date('Y');
 
     echo '
-    <script src="resource/fontawesome-pro_v6.7.2_web/js/all.js"></script>
+    <script src="https://kit.fontawesome.com/790ed5a49f.js" crossorigin="anonymous"></script>
     <script src="resource/js/bootstrap.bundle.js"></script>
     <footer class="text-light py-5 mt-5">
         <div class="container">
@@ -470,7 +469,7 @@ function homepage(){
   
     <section class="skills-section">
         <div class="section-header">
-            <h2 class="section-title text-primary"> <i class="fa-sharp fa-rectangle-terminal"></i> My Skills</h2>
+            <h2 class="section-title text-primary"><i class="fa-solid fa-terminal"></i> My Skills</h2>
         </div>
         <div class="container-box">
     ';
@@ -514,7 +513,7 @@ function homepage(){
    <section class="section-certification">
     <div class="section-header">
         <h2 class="section-title text-primary">
-            <i class="fa-duotone fa-trophy-star"></i> Certification
+            <i class="fas fa-trophy"></i> Certifications
         </h2>
     </div>
     <div class="container-box">';
@@ -549,7 +548,7 @@ function homepage(){
    
 <section class="projects-section" id="projects">
     <h2 class="section-title text-primary">
-        <i class="fa-sharp-duotone fa-list-check"></i> Featured Projects
+        <i class="fas fa-list-check"></i> Featured Projects
        
     </h2>
 
@@ -591,7 +590,7 @@ function homepage(){
                 
                 if (!empty($tagsHtml)) {
                     echo '
-                        <span><i class="fa-duotone fa-tags"></i> Tags:</span>
+                        <span class="project-tags-label"><i class="fas fa-tags"></i> Tags:</span>
                         <div class="project-tags">' . $tagsHtml . '</div>';
                 }
                 
@@ -607,7 +606,7 @@ function homepage(){
        
 <div class="kontainer-info">
         <h3 class="text-primary text-center">
-        <i class="fa-duotone fa-info-circle "></i> Info
+        <i class="fas fa-info-circle "></i> Info
         </h3>
    <div class="color-group">
     <div class="dot-wrap">
