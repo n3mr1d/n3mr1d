@@ -5,9 +5,6 @@ require __DIR__ . "/config.php";
 require __DIR__ . "/autoload.php";
 
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 
 // function component html page
@@ -836,10 +833,7 @@ function showtable($table_name){
 </div>";
 }
 function logout() {
-    // Mulai sesi jika belum dimulai
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+  
 
     // Hapus semua data session
     $_SESSION = [];
