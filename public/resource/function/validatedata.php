@@ -17,22 +17,30 @@ function ceckadmin(){
 function loginout(string $username, string $password)
 {
     global $sql;
-    if (empty($username) || empty($password)) {
+
+    // Mulai session jika belum dimulai
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Validasi input
+    if (trim($username) === '' || trim($password) === '') {
         $_SESSION['errors'] = "Username dan password tidak boleh kosong";
         echo '<script>window.location.href="/login"</script>';
         exit();
     }
 
     try {
-        $query = "SELECT * FROM users WHERE username = :username";
+        $query = "SELECT * FROM users WHERE username = :username LIMIT 1";
         $stmt = $sql->prepare($query);
-        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result && password_verify($password, $result['password'])) {
-            session_start();
+        if ($result && isset($result['password']) && password_verify($password, $result['password'])) {
             $_SESSION['user_id'] = $result['id'];
+            // Optional: unset error jika sebelumnya ada
+            unset($_SESSION['errors']);
             echo '<script>window.location.href="/dashboard"</script>';
             exit();
         } else {
