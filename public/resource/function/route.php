@@ -39,7 +39,8 @@ function route() {
         $action = $_POST['action'];
         switch ($action) {
             case 'crypto':
-                cryptoadd($_POST['name'] ?? '', $_POST['address'] ?? '', $_POST['icon'] ?? '');
+                var_dump('berhasil masuk sini');
+                // cryptoadd($_POST['name'] ?? '', $_POST['address'] ?? '', $_POST['icon'] ?? '');
                 break;
             case 'certif':
                 addcertif($_POST['title'] ?? '', $_POST['imglink'] ?? '', $_POST['source'] ?? '');
