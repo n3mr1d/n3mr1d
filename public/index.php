@@ -108,10 +108,7 @@ function print_end(): void {
 
 // dashboard load function
 function dashboard() {
-    if (!isset($_SESSION['user_id'])) {
-        echo '<script>window.location.href="/login"</script>';
-        exit;
-    }
+  
     print_start("Dashboard");
     echo '<script src="resource/js/dashboard.js"></script>';
 

@@ -68,6 +68,10 @@ function route() {
                 require_once $hey . '/curlgithub.php';
                 break;
             case '/dashboard':
+                if (!isset($_SESSION['user_id'])) {
+                    echo '<script>window.location.href="/login"</script>';
+                    exit;
+                }
                 dashboard();
                 break;
             case '/logout':
