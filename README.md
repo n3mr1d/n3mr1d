@@ -132,4 +132,4 @@ dYAaSOuisbIaThct+giwOsxSV5486K8rW4vspkafBJXpqurb1eOxUYgGmw==
 
 
 ## Social Connect Link
-> comming soon
+https://nameriad.is-a-fullstack.dev
