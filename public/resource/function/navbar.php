@@ -15,12 +15,6 @@ function navbar() {
             'link' => '/about',
             'icon' => 'fa-user'
         ],
-        'Project' => [
-            'label' => 'Projects', 
-            'class' => 'iniclasicon', 
-            'link' => 'index.php#awili',
-            'icon' => 'fa-code'
-        ],
         'Donate' => [
             'label' => 'Donate', 
             'class' => 'donate', 
@@ -62,12 +56,7 @@ function navbar() {
         echo '<a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>';
         echo '</div>';
         echo '</div>';
-    } else {
-        echo '<a class="auth-button login-btn" href="/login" id="loginBtn">';
-        echo '<i class="fas fa-sign-in-alt"></i> Login';
-        echo '</a>';
-    }
-
+    } 
     echo '</div>';
     echo '</nav>';
     
@@ -91,12 +80,7 @@ function navbar() {
         echo '<a href="/dashboard" class="mobile-menu-item"><i class="fas fa-cog"></i> Dashboard</a>';
         echo '<a href="/logout" class="mobile-menu-item"><i class="fas fa-sign-out-alt"></i> Logout</a>';
         echo '</div>';
-    } else {
-        echo '<div class="mobile-auth-buttons">';
-        echo '<a class="mobile-menu-item" href="/login" id="mobileLoginBtn"><i class="fas fa-sign-in-alt"></i> Login</a>';
-        echo '</div>';
-    }
-    
+    }    
     echo '</div>';
     echo '</nav>';
 

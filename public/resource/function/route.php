@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 function route() {
     // Pastikan session sudah dimulai
     if (session_status() === PHP_SESSION_NONE) {

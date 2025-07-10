@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Show form login page
 function showadmin()
 {

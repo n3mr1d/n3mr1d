@@ -73,6 +73,31 @@
     scroll-behavior: smooth;
   }
 }
+
+/* iini adalah style untuk tombol download pdf cv */
+.download-cv{
+  display:block;
+  padding:10px;
+  margin:10px;
+  font-size:1.5rem;
+  color:white;
+  border-radius:10px;
+  background-color:var(--bs-primary);
+  text-decoration:none;
+
+
+}
+.download-cv:hover{
+color:white;
+  font-weight:bolder;
+}
+.section-dowloader{
+  display:flex;
+  justify-items:center;
+  justify-content:center;
+
+  
+}
 /* 
 /* Donate Page Styles - Dark Mode Optimized */
 

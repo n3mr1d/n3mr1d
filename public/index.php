@@ -461,7 +461,10 @@ function homepage(){
     }
   
     echo '
-            </div>
+  </div>
+  <div class="section-dowloader">
+  <a href="./Important.pdf" class="download-cv"  >View More Cv</a>
+  </div>
         </div>
     </section>
   

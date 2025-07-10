@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Cek apakah sudah ada admin di tabel users
 function ceckadmin() {
     global $sql;

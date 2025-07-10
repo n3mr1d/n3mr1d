@@ -1,4 +1,5 @@
 <?php 
+session_start();
 function sessionfetch() {
     if (isset($_SESSION['errors'])) {
         $errors = $_SESSION['errors'];

@@ -66,7 +66,7 @@ $queries = [
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         project_id INT NOT NULL,
-        color VARCHAR(7) NOT NULL DEFAULT '#e74c3c',
+        color VARCHAR(7) DEFAULT '#e74c3c',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (project_id) REFERENCES pro(id) ON DELETE CASCADE
     ) ENGINE=InnoDB",
@@ -75,7 +75,7 @@ $queries = [
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         project_id INT NOT NULL,
-        color VARCHAR(7) NOT NULL DEFAULT '#f39c12 ',
+        color VARCHAR(7) DEFAULT '#f39c12',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (project_id) REFERENCES pro(id) ON DELETE CASCADE
     ) ENGINE=InnoDB",
@@ -84,7 +84,7 @@ $queries = [
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         project_id INT NOT NULL,
-        color VARCHAR(7) NOT NULL DEFAULT '#3498db',
+        color VARCHAR(7)  DEFAULT '#3498db',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (project_id) REFERENCES pro(id) ON DELETE CASCADE
     ) ENGINE=InnoDB"

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $fetchdata = function($table) {
     global $sql;
     $stmt = $sql->prepare("SELECT * FROM $table");
