@@ -1,8 +1,11 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Show form login page
 function showadmin()
 {
+
     print_start("login");
 
     if (isset($_SESSION['errors'])) {

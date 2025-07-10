@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 $fetchdata = function($table) {
     global $sql;
     $stmt = $sql->prepare("SELECT * FROM $table");
