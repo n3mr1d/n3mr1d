@@ -342,8 +342,8 @@ If you find my projects valuable, consider supporting through crypto donations:
 
 <div align="center">
 
-[![Website](https://img.shields.io/badge/Website-00f7ff?style=for-the-badge&logo=google-chrome&logoColor=black)](https://nameriad.is-a-fullstack.dev)
-[![Keybase](https://img.shields.io/badge/Keybase-3663EA?style=for-the-badge&logo=keybase&logoColor=black)](https://keybase.io/n3mr1d)
+[![Website](https://img.shields.io/badge/Website-fb542b?style=for-the-badge&logo=google-chrome&logoColor=black)](https://nameriad.is-a-fullstack.dev)
+[![Keybase](https://img.shields.io/badge/Keybase-3663EA?style=for-the-badge&logo=keybase&logoColor=white)](https://keybase.io/n3mr1d)
 [![Email](https://img.shields.io/badge/ProtonMail-6D4AFF?style=for-the-badge&logo=protonmail&logoColor=black)](mailto:nameraid@protonmail.com)
 
 </div>
@@ -356,7 +356,7 @@ If you find my projects valuable, consider supporting through crypto donations:
 
 ![Quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
 
-### 🐍 Contribution Graph
+### Contribution Graph
 
 <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/n3mr1d/n3mr1d/output/pacman-contribution-graph-dark.svg">
