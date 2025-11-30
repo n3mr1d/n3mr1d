@@ -6,7 +6,7 @@
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=n3mr1d&color=8c00ff&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views"/>
-  <img src="https://img.shields.io/github/followers/n3mr1d?style=for-the-badge&color=6d7000&labelColor=0D1117&logo=github&label=FOLLOWERS" alt="Followers"/>
+  <img src="https://img.shields.io/github/followers/n3mr1d?style=for-the-badge&color=fb542b&labelColor=0D1117&logo=github&label=FOLLOWERS" alt="Followers"/>
   <img src="https://img.shields.io/badge/STATUS-LEARNING-f8ff00?style=for-the-badge&labelColor=1a1a2e" alt="Status"/>
 </p>
 
@@ -343,8 +343,8 @@ If you find my projects valuable, consider supporting through crypto donations:
 <div align="center">
 
 [![Website](https://img.shields.io/badge/Website-00f7ff?style=for-the-badge&logo=google-chrome&logoColor=black)](https://nameriad.is-a-fullstack.dev)
-[![Keybase](https://img.shields.io/badge/Keybase-00f7ff?style=for-the-badge&logo=keybase&logoColor=black)](https://keybase.io/n3mr1d)
-[![Email](https://img.shields.io/badge/ProtonMail-00f7ff?style=for-the-badge&logo=protonmail&logoColor=black)](mailto:nameraid@protonmail.com)
+[![Keybase](https://img.shields.io/badge/Keybase-3663EA?style=for-the-badge&logo=keybase&logoColor=black)](https://keybase.io/n3mr1d)
+[![Email](https://img.shields.io/badge/ProtonMail-6D4AFF?style=for-the-badge&logo=protonmail&logoColor=black)](mailto:nameraid@protonmail.com)
 
 </div>
 
