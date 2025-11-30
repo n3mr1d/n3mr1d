@@ -1,78 +1,239 @@
-# 🔐 n3mr1d (NameRaid)
+<div align="center">
+
+# 🔐 n3mr1d
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&multiline=true&repeat=false&width=600&height=100&lines=Welcome+to+my+Digital+Realm;Where+Encryption+is+Law" alt="Typing SVG" />
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=n3mr1d&color=00f7ff&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views"/>
+  <img src="https://img.shields.io/github/followers/n3mr1d?style=for-the-badge&color=00f7ff&labelColor=1a1a2e&logo=github&label=FOLLOWERS" alt="Followers"/>
+  <img src="https://img.shields.io/badge/STATUS-LEARNING-00f7ff?style=for-the-badge&labelColor=1a1a2e" alt="Status"/>
+</p>
+
+```ascii
+╔═══════════════════════════════════════════════════════════════╗
+║  "I exist where encryption is law and anonymity is power."   ║
+║                        —n3mr1d                                ║
+╚═══════════════════════════════════════════════════════════════╝
+```
+
+</div>
+
+---
+
+## 👨‍💻 About Me
+
+```rust
+struct Developer {
+    name: &'static str,
+    role: Role,
+    location: &'static str,
+    code: Vec<&'static str>,
+    focus: Vec<&'static str>,
+    philosophy: &'static str,
+}
+
+enum Role {
+    NoobFullStack,
+    CryptoEnthusiast,
+    OpenSourceContributor,
+}
+
+let n3mr1d = Developer {
+    name: "n3mr1d",
+    role: Role::NoobFullStack,
+    location: "Digital Realm",
+    code: vec!["PHP", "Rust", "JavaScript", "HTML/CSS"],
+    focus: vec!["Web Development", "Security", "Privacy"],
+    philosophy: "Continuous learning, one commit at a time",
+};
+```
 
 <div align="center">
-  
-  ![GitHub Profile Views](https://komarev.com/ghpvc/?username=n3mr1d&color=blueviolet)
-  [![GitHub followers](https://img.shields.io/github/followers/n3mr1d?style=social)](https://github.com/n3mr1d)
-  <!-- [![Twitter Follow](https://img.shields.io/twitter/follow/n3mr1d?style=social)](https://twitter.com/n3mr1d) -->
-  
+
+### 🎯 Current Focus
+
 </div>
 
-## 💰 Donations
+<table align="center">
+<tr>
+<td align="center" width="50%">
 
-If you find my work valuable, consider supporting me through cryptocurrency donations:
+🔨 **Building**
+- Small-scale web applications
+- Privacy-focused tools
+- Learning projects
 
-[![Bitcoin](https://img.shields.io/badge/Bitcoin-18cq7C3Gegea7XVnEHbXDJ9EAJ5SWFfxrZ-orange?style=flat-square&logo=bitcoin&logoColor=white)](bitcoin:18cq7C3Gegea7XVnEHbXDJ9EAJ5SWFfxrZ)
+</td>
+<td align="center" width="50%">
 
-[![Ethereum](https://img.shields.io/badge/Ethereum-0xb23D38832c86d3A56389473D2a8cE10B684bC902-blue?style=flat-square&logo=ethereum&logoColor=white)](ethereum:0xb23D38832c86d3A56389473D2a8cE10B684bC902)
+📚 **Learning**
+- Advanced Rust programming
+- Laravel framework
+- System design patterns
 
-[![Dogecoin](https://img.shields.io/badge/DOGE-DSGiCuzQPXiUmvKzBrEekkb1d5bvYnsNeY-yellow?style=flat-square&logo=dogecoin&logoColor=white)](dogecoin:DSGiCuzQPXiUmvKzBrEekkb1d5bvYnsNeY)
+</td>
+</tr>
+</table>
 
-## 💫 About Me
+---
 
-> *"I exist where encryption is law and anonymity is power."* —n3mr1d
-
-**role : NOOB**
-
-I'm a NOOB fullstack developer passionate about PHP and Rust. Currently focused on building small websites while continuously learning. I've dedicated myself to the world of computers, finding my strength in the digital realm where I can express myself freely. Though I consider myself a beginner, I'm committed to growing my skills in web development and programming.
-
-## 🛠️ Tech Stack
+## 🛠️ Tech Arsenal
 
 <div align="center">
-  
-  ![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
-  ![PHP](https://img.shields.io/badge/-PHP-AEB2D5?style=flat-square&logo=php&logoColor=white)
-  ![Rust](https://img.shields.io/badge/-Rust-000000?style=flat-square&logo=rust&logoColor=white)
-  ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
-  ![Laravel](https://img.shields.io/badge/-Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white)
-  ![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3&logoColor=white)
-  ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-  
+
+### Languages & Frameworks
+
+<table>
+<tr>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=php" width="48" height="48" alt="PHP" />
+<br><strong>PHP</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=rust" width="48" height="48" alt="Rust" />
+<br><strong>Rust</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" />
+<br><strong>JavaScript</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" />
+<br><strong>HTML</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" />
+<br><strong>CSS</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=laravel" width="48" height="48" alt="Laravel" />
+<br><strong>Laravel</strong>
+</td>
+</tr>
+</table>
+
+### Tools & Technologies
+
+<table>
+<tr>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=linux" width="48" height="48" alt="Linux" />
+<br><strong>Linux</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=git" width="48" height="48" alt="Git" />
+<br><strong>Git</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=docker" width="48" height="48" alt="Docker" />
+<br><strong>Docker</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=vscode" width="48" height="48" alt="VS Code" />
+<br><strong>VS Code</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=mysql" width="48" height="48" alt="MySQL" />
+<br><strong>MySQL</strong>
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="PostgreSQL" />
+<br><strong>PostgreSQL</strong>
+</td>
+</tr>
+</table>
+
 </div>
 
-## GitHub Stats
+---
+
+## 📊 GitHub Analytics
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=n3mr1d&show_icons=true&theme=radical" alt="GitHub Stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=n3mr1d&theme=radical" alt="GitHub Streak" />
+
+<img width="49%" src="https://github-readme-stats.vercel.app/api?username=n3mr1d&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00f7ff&icon_color=00f7ff&text_color=c9d1d9" alt="GitHub Stats" />
+<img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=n3mr1d&theme=tokyonight&hide_border=true&background=0D1117&stroke=00f7ff&ring=00f7ff&fire=00f7ff&currStreakLabel=00f7ff" alt="GitHub Streak" />
+
+<img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=n3mr1d&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00f7ff&text_color=c9d1d9" alt="Top Languages" />
+<img width="49%" src="https://github-readme-activity-graph.vercel.app/graph?username=n3mr1d&theme=tokyo-night&hide_border=true&bg_color=0D1117&color=00f7ff&line=00f7ff&point=c9d1d9" alt="Activity Graph" />
+
 </div>
 
-## Projects
+<div align="center">
 
-- **PasteLink** - Link list directory
-- **UploadAnonym** - Upload Anonymous File/Image
+### 🏆 GitHub Trophies
 
+<img src="https://github-profile-trophy.vercel.app/?username=n3mr1d&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=15&margin-h=15" alt="GitHub Trophies" />
 
-## PlayList Spotify
-[![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=31xm7txea264o45vm66425ojitmq&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=true&bar_color=53b14f&bar_color_cover=false)](https://github.com/kittinan/spotify-github-profile)
-## 🔐 Cryptographic Signature
-
-<div>
-  
-  **PGP Key Information**
-  
-  | Detail | Value |
-  |--------|-------|
-  | **Fingerprint** | `184D 1362 1014 8737 5EAA AACD 330F 3DCD 0522 80C6` |
-  | **Name** | N3mR1d |
-  | **Email** | nameraid@protonmail.com |
-  | **Keybase** | [https://keybase.io/n3mr1d](https://keybase.io/n3mr1d) |
-  
-  *Original N3mr1d - Please encrypt messages with PGP*
-  
 </div>
+
+---
+
+## 🚀 Featured Projects
+
+<div align="center">
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔗 PasteLink
+**Link Directory Manager**
+
+A modern link list directory application for organizing and sharing collections of links efficiently.
+
+`PHP` `Laravel` `MySQL`
+
+</td>
+<td width="50%">
+
+### 📤 UploadAnonym
+**Anonymous File Sharing**
+
+Privacy-focused file and image upload service with no tracking or user data collection.
+
+`PHP` `Security` `Privacy`
+
+</td>
+</tr>
+</table>
+
+</div>
+
+---
+
+## 🎵 Currently Vibing To
+
+<div align="center">
+
+[![Spotify](https://spotify-github-profile.kittinanx.com/api/view?uid=31xm7txea264o45vm66425ojitmq&cover_image=true&theme=novatorem&show_offline=false&background_color=0d1117&interchange=true&bar_color=00f7ff&bar_color_cover=false)](https://spotify-github-profile.kittinanx.com/api/view?uid=31xm7txea264o45vm66425ojitmq&redirect=true)
+
+</div>
+
+---
+
+## 🔐 Cryptographic Identity
+
+<div align="center">
+
+### PGP Public Key Information
+
+<table>
+<tr><td align="right"><strong>Fingerprint</strong></td><td><code>184D 1362 1014 8737 5EAA AACD 330F 3DCD 0522 80C6</code></td></tr>
+<tr><td align="right"><strong>Name</strong></td><td>N3mR1d</td></tr>
+<tr><td align="right"><strong>Email</strong></td><td>nameraid@protonmail.com</td></tr>
+<tr><td align="right"><strong>Keybase</strong></td><td><a href="https://keybase.io/n3mr1d">keybase.io/n3mr1d</a></td></tr>
+</table>
+
+```
+⚠️  Original N3mR1d - Please encrypt sensitive messages with PGP
+```
+
 <details>
-<summary>🔐 PGP Public Key (Click to expand)</summary>
+<summary><strong>📜 View Full PGP Public Key</strong></summary>
+
+<br>
 
 ```asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -127,9 +288,76 @@ uGwll+taYwTPhy26HTphd5jkQVA6OMhid6PzURw3AuSOWsOcLRvtEseVKclpVPXG
 dYAaSOuisbIaThct+giwOsxSV5486K8rW4vspkafBJXpqurb1eOxUYgGmw==
 =mHWx
 -----END PGP PUBLIC KEY BLOCK-----
+```
 
-``` 
+</details>
 
+</div>
 
-## Social Connect Link
-https://nameriad.is-a-fullstack.dev
+---
+
+## 💰 Support My Work
+
+<div align="center">
+
+If you find my projects valuable, consider supporting through crypto donations:
+
+<table>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/Bitcoin-000?style=for-the-badge&logo=bitcoin&logoColor=white" alt="Bitcoin"/>
+<br>
+<code>18cq7C3Gegea7XVnEHbXDJ9EAJ5SWFfxrZ</code>
+</td>
+</tr>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=ethereum&logoColor=white" alt="Ethereum"/>
+<br>
+<code>0xb23D38832c86d3A56389473D2a8cE10B684bC902</code>
+</td>
+</tr>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/Dogecoin-C2A633?style=for-the-badge&logo=dogecoin&logoColor=white" alt="Dogecoin"/>
+<br>
+<code>DSGiCuzQPXiUmvKzBrEekkb1d5bvYnsNeY</code>
+</td>
+</tr>
+</table>
+
+</div>
+
+---
+
+## 🌐 Connect With Me
+
+<div align="center">
+
+[![Website](https://img.shields.io/badge/Website-00f7ff?style=for-the-badge&logo=google-chrome&logoColor=black)](https://nameriad.is-a-fullstack.dev)
+[![Keybase](https://img.shields.io/badge/Keybase-00f7ff?style=for-the-badge&logo=keybase&logoColor=black)](https://keybase.io/n3mr1d)
+[![Email](https://img.shields.io/badge/ProtonMail-00f7ff?style=for-the-badge&logo=protonmail&logoColor=black)](mailto:nameraid@protonmail.com)
+
+</div>
+
+---
+
+<div align="center">
+
+### 💭 Random Dev Quote
+
+![Quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
+
+### 🐍 Contribution Graph
+
+![Snake animation](https://raw.githubusercontent.com/n3mr1d/n3mr1d/output/github-contribution-grid-snake-dark.svg)
+
+---
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=00f7ff&height=100&section=footer" width="100%" />
+
+**⭐ From [n3mr1d](https://github.com/n3mr1d) with 💙**
+
+*"Code is poetry written in logic"*
+
+</div>
