@@ -124,6 +124,10 @@ let n3mr1d = Developer {
 <br><strong>Linux</strong>
 </td>
 <td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=arch" width="48" height="48" alt="Arch" />
+<br><strong>Arch</strong>
+</td>
+<td align="center" width="96">
 <img src="https://skillicons.dev/icons?i=git" width="48" height="48" alt="Git" />
 <br><strong>Git</strong>
 </td>
@@ -132,8 +136,8 @@ let n3mr1d = Developer {
 <br><strong>Docker</strong>
 </td>
 <td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=vscode" width="48" height="48" alt="VS Code" />
-<br><strong>VS Code</strong>
+<img src="https://skillicons.dev/icons?i=neovim" width="48" height="48" alt="VS Code" />
+<br><strong>Neovim</strong>
 </td>
 <td align="center" width="96">
 <img src="https://skillicons.dev/icons?i=mysql" width="48" height="48" alt="MySQL" />
@@ -191,7 +195,7 @@ A modern link list directory application for organizing and sharing collections 
 </td>
 <td width="50%">
 
-### 📤 UploadAnonym
+### 📤 Enfileup
 
 **Anonymous File Sharing**
 
@@ -354,8 +358,10 @@ If you find my projects valuable, consider supporting through crypto donations:
 
 ### 🐍 Contribution Graph
 
-![Snake animation](https://raw.githubusercontent.com/n3mr1d/n3mr1d/output/github-contribution-grid-snake-dark.svg)
-
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/n3mr1d/n3mr1d/output/pacman-contribution-graph-dark.svg">
+    <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/n3mr1d/n3mr1d/output/pacman-contribution-graph.svg">
+</picture>
 ---
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=00f7ff&height=100&section=footer" width="100%" />
