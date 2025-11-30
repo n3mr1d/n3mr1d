@@ -5,14 +5,14 @@
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&multiline=true&repeat=false&width=600&height=100&lines=Welcome+to+my+Digital+Realm;Where+Encryption+is+Law" alt="Typing SVG" />
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=n3mr1d&color=00f7ff&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views"/>
-  <img src="https://img.shields.io/github/followers/n3mr1d?style=for-the-badge&color=00f7ff&labelColor=1a1a2e&logo=github&label=FOLLOWERS" alt="Followers"/>
-  <img src="https://img.shields.io/badge/STATUS-LEARNING-00f7ff?style=for-the-badge&labelColor=1a1a2e" alt="Status"/>
+  <img src="https://komarev.com/ghpvc/?username=n3mr1d&color=f8ff00&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views"/>
+  <img src="https://img.shields.io/github/followers/n3mr1d?style=for-the-badge&color=00f7ff&labelColor=f8ff00&logo=github&label=FOLLOWERS" alt="Followers"/>
+  <img src="https://img.shields.io/badge/STATUS-LEARNING-f8ff00?style=for-the-badge&labelColor=1a1a2e" alt="Status"/>
 </p>
 
 ```ascii
 ╔═══════════════════════════════════════════════════════════════╗
-║  "I exist where encryption is law and anonymity is power."   ║
+║  "I exist where encryption is law and anonymity is power."    ║
 ║                        —n3mr1d                                ║
 ╚═══════════════════════════════════════════════════════════════╝
 ```
@@ -60,6 +60,7 @@ let n3mr1d = Developer {
 <td align="center" width="50%">
 
 🔨 **Building**
+
 - Small-scale web applications
 - Privacy-focused tools
 - Learning projects
@@ -68,6 +69,7 @@ let n3mr1d = Developer {
 <td align="center" width="50%">
 
 📚 **Learning**
+
 - Advanced Rust programming
 - Laravel framework
 - System design patterns
@@ -179,6 +181,7 @@ let n3mr1d = Developer {
 <td width="50%">
 
 ### 🔗 PasteLink
+
 **Link Directory Manager**
 
 A modern link list directory application for organizing and sharing collections of links efficiently.
@@ -189,6 +192,7 @@ A modern link list directory application for organizing and sharing collections 
 <td width="50%">
 
 ### 📤 UploadAnonym
+
 **Anonymous File Sharing**
 
 Privacy-focused file and image upload service with no tracking or user data collection.
@@ -358,6 +362,6 @@ If you find my projects valuable, consider supporting through crypto donations:
 
 **⭐ From [n3mr1d](https://github.com/n3mr1d) with 💙**
 
-*"Code is poetry written in logic"*
+_"Code is poetry written in logic"_
 
 </div>
