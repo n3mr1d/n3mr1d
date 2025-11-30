@@ -5,8 +5,8 @@
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&multiline=true&repeat=false&width=600&height=100&lines=Welcome+to+my+Digital+Realm;Where+Encryption+is+Law" alt="Typing SVG" />
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=n3mr1d&color=f8ff00&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views"/>
-  <img src="https://img.shields.io/github/followers/n3mr1d?style=for-the-badge&color=00f7ff&labelColor=f8ff00&logo=github&label=FOLLOWERS" alt="Followers"/>
+  <img src="https://komarev.com/ghpvc/?username=n3mr1d&color=8c00ff&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views"/>
+  <img src="https://img.shields.io/github/followers/n3mr1d?style=for-the-badge&color=6d7000&labelColor=0D1117&logo=github&label=FOLLOWERS" alt="Followers"/>
   <img src="https://img.shields.io/badge/STATUS-LEARNING-f8ff00?style=for-the-badge&labelColor=1a1a2e" alt="Status"/>
 </p>
 
